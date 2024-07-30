@@ -1,0 +1,4 @@
+@import url(https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css);
+@import url(https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js);
+body{margin-top:20px;}              
+.modal-footer {   border-top: 0px; }

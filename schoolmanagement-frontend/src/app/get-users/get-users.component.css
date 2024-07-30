@@ -1,0 +1,17 @@
+@import url(https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css);
+.btn-blue {
+    background-color: #428bca;
+}
+.btn-blue:hover {
+    background-color: #3071a9;
+}
+.btn-red {
+    background-color: #e3342f;
+}
+.btn-red:hover {
+    background-color: #cc1f1a;
+}
+.input-blue:focus {
+    border-color: #428bca;
+    box-shadow: 0 0 0 3px rgba(66, 139, 202, 0.4);
+}

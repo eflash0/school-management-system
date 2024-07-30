@@ -1,0 +1,23 @@
+<!-- Navigation Bar -->
+<nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-bold text-gray-800 no-underline">School Dashboard</a>
+                <div class="ml-10 flex items-baseline space-x-4">
+                    <a href="get-users" class="text-gray-600 hover:text-gray-800">Users</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-800">Students</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-800">Teachers</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-800">Classes</a>
+                </div>
+            </div>
+            <div class="ml-3 relative">
+                <div>
+                    <button (click)="logout()"  class="bg-red-600 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
