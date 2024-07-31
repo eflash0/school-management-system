@@ -57,12 +57,11 @@ public class Student {
         this.code = code;
     };
 
-    public Student(String firstName, String lastName,String code, LocalDate joinDate, String nationalCode) {
+    public Student(String firstName, String lastName, LocalDate joinDate, String nationalCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.joinDate = joinDate;
         this.nationalCode = nationalCode;
-        this.code = code;
     };
 
     

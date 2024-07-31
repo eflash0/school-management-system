@@ -42,7 +42,7 @@ public class StudentTest {
 
     @Test
     public void registerStudentTest() throws Exception {
-        Student example = new Student("first", "last", "fkeow", LocalDate.of(2000, 10, 20), "rgkeprgk");
+        Student example = new Student("first", "last", LocalDate.of(2000, 10, 20), "rgkeprgk");
         String studentJson = objectMapper.writeValueAsString(example);
 
         when(studentRepository.save(any(Student.class))).thenReturn(example);

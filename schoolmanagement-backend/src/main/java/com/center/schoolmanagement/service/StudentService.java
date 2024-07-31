@@ -37,7 +37,8 @@ public class StudentService {
         do{
             code = UUID.randomUUID().toString();
         } while(studentRepository.findByCode(code).isPresent());
-        student.setCode(code);
+        
+        student.setCode(code.split("-")[0]);
         return studentRepository.save(student);    
     }
 

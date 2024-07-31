@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { User } from '../user'
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { User } from '../../user'
+import { UserService } from '../../services/user.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -15,8 +14,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AddUserComponent implements OnInit{
   user : User = new User('','','');
 
-  constructor(private userService : UserService,private router : Router
-    ,public dialogRef:MatDialogRef<AddUserComponent>){ }
+  constructor(private userService : UserService,public dialogRef:MatDialogRef<AddUserComponent>){ }
   ngOnInit(): void {
 
   }

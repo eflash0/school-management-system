@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
-import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-get-users',
@@ -16,7 +15,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 })
 export class GetUsersComponent implements OnInit{
   userList : any;
-  constructor(private userService : UserService,private router : Router,public dialog : MatDialog){}
+  constructor(private userService : UserService,public dialog : MatDialog){}
 
   ngOnInit(): void {
       this.userService.getALlUsers().subscribe(

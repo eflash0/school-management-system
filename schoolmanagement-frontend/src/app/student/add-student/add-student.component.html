@@ -1,0 +1,28 @@
+<div class="dialog-content">
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Add Student</h2>
+      <form (ngSubmit)="addStudent()" #studentForm="ngForm">
+        <div class="mb-4">
+          <label for="firstName" class="block text-gray-700 font-medium mb-2">First Name</label>
+          <input [(ngModel)]="student.firstName" type="text" id="firstName" name="firstName" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
+        </div>
+        <div class="mb-4">
+          <label for="lastName" class="block text-gray-700 font-medium mb-2">Last Name</label>
+          <input [(ngModel)]="student.lastName" type="text" id="lastName" name="lastName" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
+        </div>
+        <div class="mb-4">
+          <label for="joinDate" class="block text-gray-700 font-medium mb-2">Join Date</label>
+          <input [(ngModel)]="student.joinDate" type="date" id="joinDate" name="joinDate" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
+        </div>
+        <div class="mb-4">
+          <label for="nationalCode" class="block text-gray-700 font-medium mb-2">National Code</label>
+          <input [(ngModel)]="student.nationalCode" type="text" id="nationalCode" name="nationalCode" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
+        </div>
+        <div class="flex justify-between items-center">
+          <button type="submit" class="btn-blue text-white px-4 py-2 rounded-lg hover:bg-blue-600">Add Student</button>
+          <button type="button" (click)="onCancel()" class="text-blue-500 hover:underline">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
