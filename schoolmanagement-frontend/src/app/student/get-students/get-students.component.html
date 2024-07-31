@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students List</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .btn-blue {
-            background-color: #428bca;
-        }
-        .btn-blue:hover {
-            background-color: #3071a9;
-        }
-        .btn-red {
-            background-color: #e3342f;
-        }
-        .btn-red:hover {
-            background-color: #cc1f1a;
-        }
-    </style>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-6">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-2xl font-bold text-gray-800">Students List</h1>
-            <a href="#" class="btn-blue text-white px-4 py-2 rounded-lg">Add Student</a>
+            <button (click)="addStudent()" class="btn-blue text-white px-4 py-2 rounded-lg">Add Student</button>
         </div>
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="bg-white shadow-md rounded-lg overflow-x-auto">
             <div *ngIf="studentList && studentList.length>0; else noStudents">
                 <table class="min-w-full leading-normal">
                     <thead>
@@ -75,8 +60,8 @@
                                 <p class="text-gray-900 whitespace-no-wrap">{{student.nationalCode}}</p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                <a (click)="updateUser()" class="btn-blue text-white px-4 py-2 rounded-lg mr-2">Update</a>
-                                <a href="#" class="btn-red text-white px-4 py-2 rounded-lg">Delete</a>
+                                <button (click)="updateStudent(student)" class="btn-blue text-white px-4 py-2 rounded-lg mr-2">Update</button>
+                                <button (click)="deleteStudent(student.studentId)" class="btn-red text-white px-4 py-2 rounded-lg">Delete</button>
                             </td>
                         </tr>
                         <!-- Add more students as needed -->

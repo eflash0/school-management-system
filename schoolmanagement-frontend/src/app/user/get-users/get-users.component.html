@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Users</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+    <title>Users List</title>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-6">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-gray-800">Manage Users</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Users List</h1>
             <button (click)="openAddUserDialog()" class="btn-blue text-white px-4 py-2 rounded-lg">Add User</button>
         </div>
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="bg-white shadow-md rounded-lg overflow-x-auto">
             <div *ngIf="userList && userList.length > 0; else noUsers">
                 <table class="min-w-full leading-normal">
                     <thead>
