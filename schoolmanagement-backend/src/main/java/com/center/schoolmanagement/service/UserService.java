@@ -25,7 +25,7 @@ public class UserService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username).orElseThrow(() -> 
+        return userRepository.findByUsername(username.trim()).orElseThrow(() -> 
         new UsernameNotFoundException(String.format(MSG,username)));
     }
 
@@ -34,13 +34,15 @@ public class UserService implements UserDetailsService{
     }
 
     public Optional<User> findUserbyUsername(String username){
-        return userRepository.findByUsername(username);
+        return userRepository.findByUsername(username.trim());
     }
 
     public User registerUser(User user){
         Optional<User> existUser = userRepository.findByUsername(user.getUsername());
         if(existUser.isPresent())
             throw new IllegalArgumentException("the user is already existed");
+        user.setUsername(user.getUsername().trim());
+        user.setPassword(user.getPassword());    
         String encodedPass = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPass);
         userRepository.save(user);
