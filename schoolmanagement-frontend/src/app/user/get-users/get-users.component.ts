@@ -34,7 +34,7 @@ export class GetUsersComponent implements OnInit{
         console.log('dialog was closed');
         this.ngOnInit();
       }
-    )
+    );
   }
 
   openUpdateUserDialog(user : any) : void {
@@ -44,7 +44,7 @@ export class GetUsersComponent implements OnInit{
         console.log('dialog was closed');
         this.ngOnInit();
       }
-    )
+    );
   }
 
   deleteUser(userId : number) : void {
@@ -59,10 +59,10 @@ export class GetUsersComponent implements OnInit{
                 this.ngOnInit();
               } ,
               error => {error.log('error deleting user');}
-            )
+            );
           }
         }
-    )
+    );
   }
   
 }

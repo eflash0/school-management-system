@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CourseService {
-  private url = "localhost:8082/courses";
+  private url = "http://localhost:8082/courses";
   constructor(private http : HttpClient) { }
 
   addCourse(course : any) : Observable<any>{
@@ -16,7 +16,7 @@ export class CourseService {
 
   getCourses() : Observable<any>{
     const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    return this.http.get(this.url,{ headers });
+    return this.http.get<any>(this.url,{ headers });
   }
 
   updateCourse(idCourse : number ,course : any) : Observable<any>{

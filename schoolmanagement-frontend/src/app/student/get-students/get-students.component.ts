@@ -34,7 +34,7 @@ export class GetStudentsComponent implements OnInit {
         console.log('dialog closed successfully');
         this.ngOnInit();
       }
-    )
+    );
   }
 
   updateStudent(student:any) : void{
@@ -44,7 +44,7 @@ export class GetStudentsComponent implements OnInit {
         console.log('dialog close successfully');
         this.ngOnInit();
       }
-    )
+    );
   }
 
   deleteStudent(studentId : number) : void{
@@ -59,9 +59,9 @@ export class GetStudentsComponent implements OnInit {
             },
             error => {console.error('an errorr occurs deleting the student');
             }
-          )
+          );
         }
       }
-    )
+    );
   }
 }

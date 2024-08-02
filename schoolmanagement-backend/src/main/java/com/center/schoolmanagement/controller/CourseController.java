@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/courses")
+@RequestMapping(path = "/courses")
 public class CourseController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class CourseController {
     @PostMapping
     public ResponseEntity<Course> addCourse(@RequestBody Course course) {
         Course savedCourse = courseService.addCourse(course);
-        URI location = URI.create(String.format("/courses/%s", savedCourse.getId()));
+        URI location = URI.create(String.format("/courses/%s", savedCourse.getCourseId()));
         return ResponseEntity.created(location).body(savedCourse);
     }
 

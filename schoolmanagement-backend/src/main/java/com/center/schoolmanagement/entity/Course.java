@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -18,15 +19,15 @@ import lombok.Setter;
 @EqualsAndHashCode
 @Getter
 @Setter
+@NoArgsConstructor
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long courseId;
     private String name;
     @ManyToMany(mappedBy = "courses")
     private List<Student> students= new ArrayList<>();
     public Course(String name) {
         this.name = name;
     }
-    
 }

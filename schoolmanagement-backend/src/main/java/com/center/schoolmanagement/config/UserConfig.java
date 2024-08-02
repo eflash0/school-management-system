@@ -6,16 +6,18 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.center.schoolmanagement.entity.Course;
 import com.center.schoolmanagement.entity.Role;
 import com.center.schoolmanagement.entity.Student;
 import com.center.schoolmanagement.entity.User;
+import com.center.schoolmanagement.service.CourseService;
 import com.center.schoolmanagement.service.StudentService;
 import com.center.schoolmanagement.service.UserService;
 
 @Configuration
 public class UserConfig {
     @Bean
-    CommandLineRunner commandLineRunner(UserService userService,StudentService studentService){
+    CommandLineRunner commandLineRunner(UserService userService,StudentService studentService,CourseService courseService){
         return args -> {
             User abdo= new User("abdo","fr",Role.ADMIN);
             User manal= new User("manal","fr",Role.ADMIN);
@@ -25,6 +27,10 @@ public class UserConfig {
             Student manalStudent = new Student("manal","marsi",LocalDate.of(2024, 7,30), "HH20345");
             studentService.registerStudent(abdoStudent);
             studentService.registerStudent(manalStudent);
+            Course course1 = new Course("English");
+            Course course2 = new Course("Physics");
+            courseService.addCourse(course1);
+            courseService.addCourse(course2);
         };
     }
 }

@@ -8,6 +8,7 @@ import { authGuard } from './auth.guard';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { AddStudentComponent } from './student/add-student/add-student.component';
 import { GetStudentsComponent } from './student/get-students/get-students.component';
+import { GetCoursesComponent } from './course/get-courses/get-courses.component';
 
 
 export const routes: Routes = [
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'navigation-bar', component: NavigationBarComponent},
   { path: 'add-student', component: AddStudentComponent},
   { path: 'get-students', component: GetStudentsComponent},
+  { path: 'get-courses', component: GetCoursesComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' } // Default route
 ];
