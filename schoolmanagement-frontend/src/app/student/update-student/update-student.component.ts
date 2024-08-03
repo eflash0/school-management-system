@@ -25,7 +25,7 @@ export class UpdateStudentComponent {
       },
       error => {console.error('error updating student',error);
       }
-    )
+    );
   }
 
   onCancel() : void{

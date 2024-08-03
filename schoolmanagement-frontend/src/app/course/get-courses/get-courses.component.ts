@@ -29,7 +29,7 @@ export class GetCoursesComponent implements OnInit {
   }
 
   addCourse() : void{
-    const dialogRef = this.dialog.open(AddCourseComponent,{width:'100px',height:'100px'});
+    const dialogRef = this.dialog.open(AddCourseComponent,{width:'400px',height:'230px',});
     dialogRef.afterClosed().subscribe(
       response => {
         console.log('dialog closes successfully',response);
@@ -40,7 +40,7 @@ export class GetCoursesComponent implements OnInit {
   }
 
   updateCourse(course : any) : void{
-    const dialogRef = this.dialog.open(UpdateCourseComponent,{width:'100px',height:'100px'});
+    const dialogRef = this.dialog.open(UpdateCourseComponent,{width:'400',height:'230px',data:course});
     dialogRef.afterClosed().subscribe(
       response => {
         console.log('dialog closes successfully',response);
@@ -51,7 +51,7 @@ export class GetCoursesComponent implements OnInit {
   }
 
   deleteCourse(idCourse : number) : void{
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{width:'100px',height:'100px'});
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{width:'400px',height:'400px'});
     dialogRef.afterClosed().subscribe(
       response => {
         if(response){
