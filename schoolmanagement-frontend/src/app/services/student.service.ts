@@ -33,4 +33,10 @@ export class StudentService {
     return this.http.delete<any>(deleteUrl,{ headers });
   }
 
+  registerStudentInCourse(studentId:number,courseId:number) : Observable<any>{
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const regUrl = `${this.url}/${studentId}/courses/${courseId}`;
+    return this.http.post<any>(regUrl,{ headers });
+  }
+
 }

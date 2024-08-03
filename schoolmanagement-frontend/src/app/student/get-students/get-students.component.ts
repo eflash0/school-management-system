@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddStudentComponent } from '../add-student/add-student.component';
 import { UpdateStudentComponent } from '../update-student/update-student.component';
 import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-get-students',
   standalone: true,
@@ -14,7 +15,8 @@ import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmat
 })
 export class GetStudentsComponent implements OnInit {
   studentList : any;
-  constructor (private studentService : StudentService,public dialog : MatDialog) {}
+  constructor (private studentService : StudentService,public dialog : MatDialog,
+  private router:Router) {}
   ngOnInit(): void {
       this.studentService.getAllStudents().subscribe(
         response => {
@@ -63,5 +65,9 @@ export class GetStudentsComponent implements OnInit {
         }
       }
     );
+  }
+
+  viewDetails(student : any):void{
+    this.router.navigate(['student-details'],{state:{student}})
   }
 }
