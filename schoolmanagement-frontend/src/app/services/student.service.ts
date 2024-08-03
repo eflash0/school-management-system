@@ -11,6 +11,12 @@ export class StudentService {
 
   constructor(private http : HttpClient) { }
 
+  getStudentById(studentId : number) : Observable<any>{
+    const stdUrl = `${this.url}/${studentId}`;
+    const headers = new HttpHeaders().set('Authorization' , `Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<any>(stdUrl,{ headers });
+  }
+
   addStudent(student : Student) : Observable<any> {
     const headers = new HttpHeaders().set('Authorization' , `Bearer ${localStorage.getItem('token')}`);
     return this.http.post<any>(this.url,student,{ headers })

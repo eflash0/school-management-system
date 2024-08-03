@@ -67,7 +67,7 @@ export class GetStudentsComponent implements OnInit {
     );
   }
 
-  viewDetails(student : any):void{
-    this.router.navigate(['student-details'],{state:{student}})
+  viewDetails(studentId : number):void{
+    this.router.navigate(['student-details'],{state:{studentId}})
   }
 }

@@ -88,5 +88,10 @@ public class StudentService {
             throw new IllegalArgumentException("Student or Course not found");
         }
     }
+
+    @Transactional
+    public void unregisterStudentFromCourse(Long studentId,Long courseId){
+        Optional<Student> studentOpt = studentRepository.findById(studentId);
+    }
 }
 

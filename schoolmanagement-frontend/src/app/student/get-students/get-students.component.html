@@ -52,7 +52,7 @@
                             <p class="text-gray-900 whitespace-no-wrap">{{student.nationalCode}}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                            <button (click)="viewDetails(student)" class="btn-blue text-white px-4 py-2 rounded-lg mr-2">Details</button>
+                            <button (click)="viewDetails(student.studentId)" class="btn-blue text-white px-4 py-2 rounded-lg mr-2">Details</button>
                             <button (click)="updateStudent(student)" class="btn-blue text-white px-4 py-2 rounded-lg mr-2">Update</button>
                             <button (click)="deleteStudent(student.studentId)" class="btn-red text-white px-4 py-2 rounded-lg">Delete</button>
                         </td>
