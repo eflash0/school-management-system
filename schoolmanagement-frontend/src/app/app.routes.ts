@@ -19,8 +19,8 @@ export const routes: Routes = [
   { path: 'get-users', component: GetUsersComponent,canActivate:[authGuard]},
   { path: 'navigation-bar', component: NavigationBarComponent},
   { path: 'add-student', component: AddStudentComponent},
-  { path: 'get-students', component: GetStudentsComponent},
-  { path: 'get-courses', component: GetCoursesComponent},
-  { path: 'student-details', component: StudentDetailsComponent},
+  { path: 'get-students', component: GetStudentsComponent,canActivate:[authGuard]},
+  { path: 'get-courses', component: GetCoursesComponent,canActivate:[authGuard]},
+  { path: 'student-details', component: StudentDetailsComponent,canActivate:[authGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' } // Default route
 ];

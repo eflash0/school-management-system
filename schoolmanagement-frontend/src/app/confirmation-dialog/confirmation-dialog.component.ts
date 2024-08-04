@@ -9,13 +9,16 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrl: './confirmation-dialog.component.css'
 })
 export class ConfirmationDialogComponent {
-  constructor(public dialogRef : MatDialogRef<ConfirmationDialogComponent>){ }
+  title : String = "";
+  content : String = "";
+  constructor(public dialogRef : MatDialogRef<ConfirmationDialogComponent>,
+  @Inject(MAT_DIALOG_DATA) public data : {title : String,content : String}){ }
 
-  cancelDelete() : void {
+  cancel() : void {
     this.dialogRef.close(false);
   }  
 
-  confirmDelete() : void{
+  confirm() : void{
     this.dialogRef.close(true);
   }
 

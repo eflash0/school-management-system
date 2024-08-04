@@ -81,4 +81,18 @@ public class StudentController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @DeleteMapping("/{studentId}/courses/{courseId}")
+    public ResponseEntity<Object> unregisterStudentFromCourse(@PathVariable Long studentId,
+    @PathVariable Long courseId){
+        try{
+            Student updatedStudent = studentService.unregisterStudentFromCourse(studentId, courseId);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("id")
+            .buildAndExpand(updatedStudent.getStudentId()).toUri();
+            return ResponseEntity.created(location).body(updatedStudent);
+        }
+        catch(IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

@@ -48,7 +48,9 @@ export class GetUsersComponent implements OnInit{
   }
 
   deleteUser(userId : number) : void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{width : '300px',height : '300px'});
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+      data : {title : 'Delete Confirmation',content : 'Are you sure you want to delete this user?'}
+    });
     dialogRef.afterClosed().subscribe(
       result => 
         {

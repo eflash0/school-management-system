@@ -51,7 +51,9 @@ export class GetCoursesComponent implements OnInit {
   }
 
   deleteCourse(idCourse : number) : void{
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{width:'400px',height:'400px'});
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+      data : {title : 'Course Deletion',content : 'Are you sure you wanna delete this course?'}
+    });
     dialogRef.afterClosed().subscribe(
       response => {
         if(response){

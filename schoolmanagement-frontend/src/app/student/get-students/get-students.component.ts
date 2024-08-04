@@ -50,7 +50,9 @@ export class GetStudentsComponent implements OnInit {
   }
 
   deleteStudent(studentId : number) : void{
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{width : '400px',height : '400px'});
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+      data : {title : 'Student Deletion',content : 'Are you sure you want to delete this student?'}
+    });
     dialogRef.afterClosed().subscribe(
       response => {
         if(response){

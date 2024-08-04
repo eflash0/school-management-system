@@ -55,7 +55,7 @@
                                 <p class="text-gray-900 whitespace-no-wrap">4</p>
                             </td> -->
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                <button onclick="unregisterCourse(course.courseId)" class="btn-red text-white px-4 py-2 rounded-lg">Unregister</button>
+                                <button (click)="unregisterStudentFromCourse(course.courseId)" class="btn-red text-white px-4 py-2 rounded-lg">Unregister</button>
                             </td>
                         </tr>
                         <!-- Add more courses dynamically as needed -->

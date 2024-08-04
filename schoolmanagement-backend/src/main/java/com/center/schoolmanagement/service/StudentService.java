@@ -90,8 +90,23 @@ public class StudentService {
     }
 
     @Transactional
-    public void unregisterStudentFromCourse(Long studentId,Long courseId){
+    public Student unregisterStudentFromCourse(Long studentId,Long courseId){
         Optional<Student> studentOpt = studentRepository.findById(studentId);
+        Optional<Course> courseOpt = courseRepository.findById(courseId);
+        if(studentOpt.isPresent() && courseOpt.isPresent()){
+            Student student = studentOpt.get();
+            Course course = courseOpt.get();
+            if(student.getCourses().contains(course)){
+                student.getCourses().remove(course);
+                return studentRepository.save(student);
+            }
+            else{
+                throw new IllegalArgumentException("the student isn't registered in this course");
+            }
+        }
+        else{
+            throw new IllegalArgumentException("student or course not found");
+        }
     }
 }
 
