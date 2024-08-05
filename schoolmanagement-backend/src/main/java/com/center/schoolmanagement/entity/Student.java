@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
@@ -47,6 +48,10 @@ public class Student {
         uniqueConstraints = @UniqueConstraint(columnNames = {"student_id","course_id"})
     )
     private List<Course> courses = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "classroomId")
+    private Classroom classroom;
 
     public Student(String firstName, String lastName,String code, LocalDate joinDate, String nationalCode, List<Course> courses) {
         this.firstName = firstName;
