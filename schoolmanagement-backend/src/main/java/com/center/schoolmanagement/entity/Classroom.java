@@ -32,13 +32,17 @@ public class Classroom {
     @Column(nullable = false,unique = true)
     @NotEmpty(message = "name can t be empty")
     private String name;
+    @NotEmpty(message = "room can t be empty")
+    @Column(nullable = false,unique = true)
+    private String room;
     @OneToMany(mappedBy = "classroom",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Student> students;
     @ManyToOne
     @JoinColumn(name = "teacherId")
     private Teacher teacher;
-    public Classroom(String name) {
+    public Classroom(String name,String room) {
         this.name = name;
+        this.room = room;
     }
 
     
