@@ -40,7 +40,7 @@ public class UserConfig {
             Teacher teacher2 = new Teacher("manal","marsi","HH42456",LocalDate.of(2024, 7,30));
             teacherService.registerTeacher(teacher1);
             teacherService.registerTeacher(teacher2);
-            Classroom classroom1 = new Classroom("Artificial Intelligence2","Room1");
+            Classroom classroom1 = new Classroom("Artificial Intelligence2","Room1",teacher1,course1);
             Classroom classroom2 = new Classroom("Computer Science1","Room2");
             classroomService.addClassroom(classroom1);
             classroomService.addClassroom(classroom2);

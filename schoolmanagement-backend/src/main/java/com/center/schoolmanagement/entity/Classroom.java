@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -26,7 +27,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-@JsonIgnoreProperties({"classrooms","teacher","course"})
+@JsonIgnoreProperties({"students"})
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,15 +38,13 @@ public class Classroom {
     @NotEmpty(message = "room can t be empty")
     @Column(nullable = false,unique = true)
     private String room;
-    @OneToMany(mappedBy = "classrooms",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "classrooms")
     private List<Student> students;
     @ManyToOne
     @JoinColumn(name = "teacher_id")
-    @JsonIgnoreProperties
     private Teacher teacher;
     @ManyToOne
     @JoinColumn(name = "course_id")
-    @JsonIgnoreProperties
     private Course course;
     public Classroom(String name,String room) {
         this.name = name;

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.center.schoolmanagement.entity.Classroom;
 import com.center.schoolmanagement.entity.Teacher;
 import com.center.schoolmanagement.service.TeacherService;
 
@@ -93,5 +94,11 @@ public class TeacherController {
         catch(IllegalArgumentException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/{teacherId}/classrooms")
+    public ResponseEntity<List<Classroom>> getStudentClassrooms(@PathVariable Long teacherId) {
+        List<Classroom> classrooms = teacherService.getTeacherClassrooms(teacherId);
+        return ResponseEntity.ok(classrooms);
     }
 }

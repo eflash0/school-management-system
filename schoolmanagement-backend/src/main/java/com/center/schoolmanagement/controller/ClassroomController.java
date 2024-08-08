@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.center.schoolmanagement.entity.Classroom;
+import com.center.schoolmanagement.entity.Student;
 import com.center.schoolmanagement.service.ClassroomService;
 
 import java.net.URI;
@@ -48,5 +49,11 @@ public class ClassroomController {
     public ResponseEntity<Void> deleteClassroom(@PathVariable Long id) {
         classroomService.deleteClassroom(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{classroomId}/students")
+    public ResponseEntity<List<Student>> getClassroomStudents(@PathVariable Long classroomId){
+        List<Student> students = classroomService.getClassroomStudents(classroomId);
+        return ResponseEntity.ok(students);
     }
 }

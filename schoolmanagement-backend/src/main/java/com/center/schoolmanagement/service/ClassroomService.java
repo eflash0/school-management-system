@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.center.schoolmanagement.entity.Classroom;
+import com.center.schoolmanagement.entity.Student;
 import com.center.schoolmanagement.repository.ClassroomRepository;
 
 @Service
@@ -40,14 +41,20 @@ public class ClassroomService {
             existingClassroom.setName(classroom.getName());
         if(classroom.getRoom() != null && !classroom.getRoom().isEmpty())
             existingClassroom.setRoom(classroom.getRoom());  
-        // if (classroom.getTeacher() != null)
-        //     existingClassroom.setTeacher(classroom.getTeacher());
-        // if (classroom.getCourse() != null)
-        //     existingClassroom.setCourse(classroom.getCourse());      
+        if (classroom.getTeacher() != null)
+            existingClassroom.setTeacher(classroom.getTeacher());
+        if (classroom.getCourse() != null)
+            existingClassroom.setCourse(classroom.getCourse());      
         return classroomRepository.save(existingClassroom);    
     }
 
     public void deleteClassroom(Long id){
         classroomRepository.deleteById(id);
+    }
+
+    public List<Student> getClassroomStudents(Long classroomId){
+        return classroomRepository.findById(classroomId)
+        .orElseThrow(() -> new IllegalArgumentException("classroom not found"))
+        .getStudents();
     }
 }

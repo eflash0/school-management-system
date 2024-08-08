@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.center.schoolmanagement.entity.Classroom;
+import com.center.schoolmanagement.entity.Course;
 import com.center.schoolmanagement.entity.Teacher;
 import com.center.schoolmanagement.repository.ClassroomRepository;
 import com.center.schoolmanagement.repository.TeacherRepository;
@@ -67,6 +68,12 @@ public class TeacherService {
 
     public List<Teacher> getTeachers(){
         return teacherRepository.findAll();
+    }
+
+    public List<Classroom> getTeacherClassrooms(Long teacherId){
+        return teacherRepository.findById(teacherId)
+        .orElseThrow(() -> new IllegalArgumentException("teacher not found"))
+        .getClassrooms();
     }
 
     @Transactional
