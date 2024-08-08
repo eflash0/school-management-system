@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.center.schoolmanagement.entity.Classroom;
 import com.center.schoolmanagement.entity.Course;
 import com.center.schoolmanagement.entity.Student;
+import com.center.schoolmanagement.repository.ClassroomRepository;
 import com.center.schoolmanagement.repository.CourseRepository;
 import com.center.schoolmanagement.repository.StudentRepository;
 
@@ -20,6 +22,9 @@ public class StudentService {
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    ClassroomRepository classroomRepository;
 
     public Optional<Student> findById(Long id){
         return studentRepository.findById(id);
@@ -107,6 +112,58 @@ public class StudentService {
         else{
             throw new IllegalArgumentException("student or course not found");
         }
+    }
+
+    public List<Course> getStudentCourses(Long studentId){
+        return studentRepository.findById(studentId)
+        .orElseThrow(() -> new IllegalArgumentException("Student not found"))
+        .getCourses();
+    }
+
+    @Transactional
+    public Student registerStudentInClassroom(Long studentId,Long classroomId){
+        Optional<Student> studentOpt = studentRepository.findById(studentId);
+        Optional<Classroom> classroomOpt = classroomRepository.findById(classroomId);
+        if(studentOpt.isPresent() && classroomOpt.isPresent()){
+            Student student = studentOpt.get();
+            Classroom classroom = classroomOpt.get();
+            if(!student.getClassrooms().contains(classroom)){
+                student.getClassrooms().add(classroom);
+                return studentRepository.save(student);
+            }
+            else{
+                throw new IllegalArgumentException("Student is already registered in the classroom");
+            }
+        }
+        else {
+            throw new IllegalArgumentException("Student or classroom not found");
+        }
+    }
+
+    @Transactional
+    public Student unregisterStudentFromClassroom(Long studentId,Long classroomId){
+        Optional<Student> studentOpt = studentRepository.findById(studentId);
+        Optional<Classroom> classroomOpt = classroomRepository.findById(classroomId);
+        if(studentOpt.isPresent() && classroomOpt.isPresent()){
+            Student student = studentOpt.get();
+            Classroom classroom = classroomOpt.get();
+            if(student.getClassrooms().contains(classroom)){
+                student.getClassrooms().remove(classroom);
+                return studentRepository.save(student);
+            }
+            else{
+                throw new IllegalArgumentException("the student isn't registered in this classroom");
+            }
+        }
+        else{
+            throw new IllegalArgumentException("student or classroom not found");
+        }
+    }
+
+    public List<Classroom> getStudentClassrooms(Long studentId){
+        return studentRepository.findById(studentId)
+        .orElseThrow(() -> new IllegalArgumentException("Student not found"))
+        .getClassrooms();
     }
 }
 

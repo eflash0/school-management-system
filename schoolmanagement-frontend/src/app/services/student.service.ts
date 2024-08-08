@@ -39,6 +39,18 @@ export class StudentService {
     return this.http.delete<any>(deleteUrl,{ headers });
   }
 
+  getStudentCourses(id : number) : Observable<any>{
+    const courseUrl = `${this.url}/${id}/courses`;
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<any>(courseUrl,{ headers });
+  }
+
+  getStudentClassrooms(id : number) : Observable<any>{
+    const courseUrl = `${this.url}/${id}/classrooms`;
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<any>(courseUrl,{ headers });
+  }
+
   registerStudentInCourse(studentId:number,courseId:number) : Observable<any>{
     const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     const regUrl = `${this.url}/${studentId}/courses/${courseId}`;
@@ -48,6 +60,18 @@ export class StudentService {
   unregisterStudentFromCourse(studentId:number,courseId:number) : Observable<any>{
     const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     const unregUrl = `${this.url}/${studentId}/courses/${courseId}`;
+    return this.http.delete<any>(unregUrl,{ headers });
+  }
+
+  registerStudentInClassroom(studentId:number,classroomId:number) : Observable<any>{
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const regUrl = `${this.url}/${studentId}/classrooms/${classroomId}`;
+    return this.http.post<any>(regUrl,{ headers });
+  }
+
+  unregisterStudentFromClassroom(studentId:number,classroomId:number) : Observable<any>{
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const unregUrl = `${this.url}/${studentId}/classrooms/${classroomId}`;
     return this.http.delete<any>(unregUrl,{ headers });
   }
 

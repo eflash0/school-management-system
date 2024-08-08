@@ -18,7 +18,7 @@
         </div>
         <div class="bg-white shadow-md rounded-lg overflow-x-auto p-6">
             <h2 class="text-xl font-bold text-gray-800 mb-4">Courses Registered</h2>
-            <div *ngIf="student.courses && student.courses.length>0 else noRegistredCourses" id="courseTableContainer">
+            <div *ngIf="studentCourses && studentCourses.length>0 else noRegistredCourses" id="courseTableContainer">
                 <table class="min-w-full leading-normal">
                     <thead>
                         <tr>
@@ -40,8 +40,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Example of a course row -->
-                        <tr *ngFor="let course of student.courses">
+                        <tr *ngFor="let course of studentCourses">
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{course.courseId}}</p>
                             </td>
@@ -58,7 +57,6 @@
                                 <button (click)="unregisterStudentFromCourse(course.courseId)" class="btn-red text-white px-4 py-2 rounded-lg">Unregister</button>
                             </td>
                         </tr>
-                        <!-- Add more courses dynamically as needed -->
                     </tbody>
                 </table>
             </div>
@@ -77,7 +75,63 @@
                     <select [(ngModel)]="selectedCourseId" id="course" name="course" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                         <option value="">Select a course</option>
                         <option *ngFor="let course of coursesList" [value]="course.courseId">{{course.name}}</option>
-                        <!-- Add more courses as needed -->
+                    </select>
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="btn-blue text-white px-4 py-2 rounded-lg">Register</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Classrooms Section -->
+        <div class="bg-white shadow-md rounded-lg overflow-x-auto p-6 mt-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Classrooms Registered</h2>
+            <div *ngIf="studentClassrooms && studentClassrooms.length > 0 else noRegisteredClassrooms" id="classroomTableContainer">
+                <table class="min-w-full leading-normal">
+                    <thead>
+                        <tr>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Classroom ID
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Classroom Name
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let classroom of studentClassrooms">
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">{{classroom.classroomId}}</p>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p class="text-gray-900 whitespace-no-wrap">{{classroom.name}}</p>
+                            </td>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
+                                <button (click)="unregisterStudentFromClassroom(classroom.classroomId)" class="btn-red text-white px-4 py-2 rounded-lg">Unregister</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-template #noRegisteredClassrooms>
+                <div class="p-6 text-center text-gray-600">
+                    <p>The student is not registered in any classroom.</p>
+                </div>
+            </ng-template>
+        </div>
+
+        <!-- Register to a Classroom -->
+        <div class="bg-white shadow-md rounded-lg overflow-x-auto p-6 mt-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Register to a Classroom</h2>
+            <form (ngSubmit)="registerStudentInClassroom()" #registerClassroomForm="ngForm" id="registerClassroomForm">
+                <div class="mb-4">
+                    <label for="classroom" class="block text-gray-700 font-medium mb-2">Select Classroom</label>
+                    <select [(ngModel)]="selectedClassroomId" id="classroom" name="classroom" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        <option value="">Select a classroom</option>
+                        <option *ngFor="let classroom of classroomsList" [value]="classroom.classroomId">{{classroom.name}}</option>
                     </select>
                 </div>
                 <div class="flex justify-end">

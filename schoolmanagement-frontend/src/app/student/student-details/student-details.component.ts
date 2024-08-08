@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
+import { ClassroomService } from '../../services/classroom.service';
 
 @Component({
   selector: 'app-student-details',
@@ -17,10 +18,14 @@ import { Router } from '@angular/router';
 export class StudentDetailsComponent implements OnInit {
   studentId : number = 0;
   coursesList : any;
+  classroomsList : any;
   selectedCourseId : String = '';
+  selectedClassroomId : String = '';
   student : any = {};
+  studentCourses : any = {};
+  studentClassrooms : any = {};
   constructor (private courseService : CourseService,private studentService:StudentService,
-  public dialog : MatDialog,private router : Router) {}
+  private classroomService : ClassroomService,public dialog : MatDialog,private router : Router) {}
   ngOnInit(): void {
       this.studentId = history.state.studentId; // here i should pass the id from get-students and use 
       //studentService to get the student to have a the student updated when registered in a course
@@ -37,6 +42,28 @@ export class StudentDetailsComponent implements OnInit {
             this.coursesList = response;
           },
           error => {console.error('error fetching for courses',error);
+          }
+        );
+        this.studentService.getStudentCourses(this.studentId).subscribe(
+          response => {
+            this.studentCourses = response;
+          },
+          error => {console.error('error fetching student courses',error);
+          }
+        );
+
+        this.classroomService.getClassrooms().subscribe(
+          response => {console.log('classrooms are fetched',response);
+            this.classroomsList = response;
+          },
+          error => {console.error('error fetching for classrooms',error);
+          }
+        );
+        this.studentService.getStudentClassrooms(this.studentId).subscribe(
+          response => {
+            this.studentClassrooms = response;
+          },
+          error => {console.error('error fetching student classrooms',error);
           }
         );
       }
@@ -58,14 +85,14 @@ export class StudentDetailsComponent implements OnInit {
         );
     }
   }
-  unregisterStudentFromCourse(courseId : number) : void{
+  unregisterStudentFromCourse(classroomId : number) : void{
     const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
       data : {title : 'Unregistration Confirmation' , content : 'Are you sure you wanna unregister the student from the course?'}
     });
     dialogRef.afterClosed().subscribe(
       result => {
         if(result){
-          this.studentService.unregisterStudentFromCourse(this.student.studentId,courseId).subscribe(
+          this.studentService.unregisterStudentFromCourse(this.student.studentId,classroomId).subscribe(
             response => {
               console.log('student unregistred from course',response);
               this.ngOnInit();
@@ -77,5 +104,38 @@ export class StudentDetailsComponent implements OnInit {
       }
     );
     
+  }
+
+  registerStudentInClassroom() : void{
+    if(this.selectedClassroomId){
+      this.studentService.registerStudentInClassroom(this.student.studentId,
+        Number(this.selectedClassroomId)).subscribe(
+          response => {
+            console.log('student is successfully registred in the classroom',response);
+            this.ngOnInit();
+          },
+          error => {console.error('error registring student in the classroom',error);
+          }
+        );
+    }
+  }
+  unregisterStudentFromClassroom(classroomId : number) : void{
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+      data : {title : 'Unregistration Confirmation' , content : 'Are you sure you wanna unregister the student from the classroom?'}
+    });
+    dialogRef.afterClosed().subscribe(
+      result => {
+        if(result){
+          this.studentService.unregisterStudentFromClassroom(this.student.studentId,classroomId).subscribe(
+            response => {
+              console.log('student unregistred from classroom',response);
+              this.ngOnInit();
+            },
+            error => {console.error('error unregistring student from classroom',error);
+            }
+          );
+        }
+      }
+    );  
   }
 }

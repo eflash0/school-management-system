@@ -38,6 +38,12 @@ public class ClassroomService {
         .orElseThrow(() -> new IllegalArgumentException("the classroom doesn't exist"));
         if(classroom.getName() != null && !classroom.getName().isEmpty())
             existingClassroom.setName(classroom.getName());
+        if(classroom.getRoom() != null && !classroom.getRoom().isEmpty())
+            existingClassroom.setRoom(classroom.getRoom());  
+        // if (classroom.getTeacher() != null)
+        //     existingClassroom.setTeacher(classroom.getTeacher());
+        // if (classroom.getCourse() != null)
+        //     existingClassroom.setCourse(classroom.getCourse());      
         return classroomRepository.save(existingClassroom);    
     }
 

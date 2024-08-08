@@ -1,5 +1,7 @@
 package com.center.schoolmanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,6 +26,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
+@JsonIgnoreProperties({"classrooms"})
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

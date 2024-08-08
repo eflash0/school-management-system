@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.center.schoolmanagement.entity.Classroom;
+import com.center.schoolmanagement.entity.Course;
 import com.center.schoolmanagement.entity.Student;
 import com.center.schoolmanagement.service.StudentService;
 
@@ -73,7 +75,7 @@ public class StudentController {
     ,@PathVariable Long courseId){
         try{
             Student updatedStudent = studentService.registerStudentInCourse(studentId, courseId);
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("id")
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(updatedStudent.getStudentId()).toUri();
             return ResponseEntity.created(location).body(updatedStudent);
         }
@@ -87,12 +89,52 @@ public class StudentController {
     @PathVariable Long courseId){
         try{
             Student updatedStudent = studentService.unregisterStudentFromCourse(studentId, courseId);
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("id")
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(updatedStudent.getStudentId()).toUri();
             return ResponseEntity.created(location).body(updatedStudent);
         }
         catch(IllegalArgumentException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/{studentId}/courses")
+    public ResponseEntity<List<Course>> getStudentCourses(@PathVariable Long studentId) {
+        List<Course> courses = studentService.getStudentCourses(studentId);
+        return ResponseEntity.ok(courses);
+    }
+
+    @PostMapping("/{studentId}/classrooms/{classroomId}")
+    public ResponseEntity<Object> registerStudentInClassroom(@PathVariable Long studentId
+    ,@PathVariable Long classroomId){
+        try{
+            Student updatedStudent = studentService.registerStudentInClassroom(studentId, classroomId);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+            .buildAndExpand(updatedStudent.getStudentId()).toUri();
+            return ResponseEntity.created(location).body(updatedStudent);
+        }
+        catch(IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{studentId}/classrooms/{classroomId}")
+    public ResponseEntity<Object> unregisterStudentFromClassroom(@PathVariable Long studentId,
+    @PathVariable Long classroomId){
+        try{
+            Student updatedStudent = studentService.unregisterStudentFromClassroom(studentId, classroomId);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+            .buildAndExpand(updatedStudent.getStudentId()).toUri();
+            return ResponseEntity.created(location).body(updatedStudent);
+        }
+        catch(IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{studentId}/classrooms")
+    public ResponseEntity<List<Classroom>> getStudentClassrooms(@PathVariable Long studentId) {
+        List<Classroom> classrooms = studentService.getStudentClassrooms(studentId);
+        return ResponseEntity.ok(classrooms);
     }
 }

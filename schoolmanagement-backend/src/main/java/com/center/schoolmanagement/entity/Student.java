@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,8 +32,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
+@JsonIgnoreProperties({"courses","classrooms"})
 public class Student {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long studentId;
@@ -60,9 +62,13 @@ public class Student {
     )
     private List<Course> courses = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "classroomId")
-    private Classroom classroom;
+    @ManyToMany
+    @JoinTable(name = "student_classrooms",
+        joinColumns = @JoinColumn(name = "student_id"),
+        inverseJoinColumns = @JoinColumn(name = "classroom_id"),
+        uniqueConstraints = @UniqueConstraint(columnNames = {"student_id","classroom_id"})
+    )
+    private List<Classroom> classrooms = new ArrayList<>();
 
     public Student(String firstName, String lastName,String code, LocalDate joinDate, String nationalCode, List<Course> courses) {
         this.firstName = firstName;

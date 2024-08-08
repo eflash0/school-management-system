@@ -1,7 +1,8 @@
 package com.center.schoolmanagement.entity;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,6 +26,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
+@JsonIgnoreProperties({"classrooms","teacher","course"})
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,14 +37,26 @@ public class Classroom {
     @NotEmpty(message = "room can t be empty")
     @Column(nullable = false,unique = true)
     private String room;
-    @OneToMany(mappedBy = "classroom",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "classrooms",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Student> students;
     @ManyToOne
-    @JoinColumn(name = "teacherId")
+    @JoinColumn(name = "teacher_id")
+    @JsonIgnoreProperties
     private Teacher teacher;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    @JsonIgnoreProperties
+    private Course course;
     public Classroom(String name,String room) {
         this.name = name;
         this.room = room;
+    }
+    public Classroom(@NotEmpty(message = "name can t be empty") String name,
+            @NotEmpty(message = "room can t be empty") String room, Teacher teacher, Course course) {
+        this.name = name;
+        this.room = room;
+        this.teacher = teacher;
+        this.course = course;
     }
 
     

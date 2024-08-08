@@ -1,1 +1,25 @@
-<p>add-classroom works!</p>
+<div class="dialog-content">
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Add teacher</h2>
+      <form (ngSubmit)="addClassroom()" #classroomForm="ngForm">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 font-medium mb-2">teacher</label>
+          <input [(ngModel)]="classroom.name" type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
+          <input [(ngModel)]="classroom.room" type="text" id="room" name="room" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
+        </div>
+        <div class="flex justify-between items-center">
+          <button type="submit" class="btn-blue text-white px-4 py-2 rounded-lg hover:bg-blue-600">Add teacher</button>
+          <button type="button" (click)="onCancel()" class="text-blue-500 hover:underline">Cancel</button>
+          <select [(ngModel)]="classroom.teacher" id="teacher" name="teacher" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            <option value="">Select a teacher</option>
+            <option *ngFor="let teacher of teachersList" [value]="teacher.teacherId">{{teacher.firstName}} {{teacher.lastName}}</option>
+        </select>
+        <select [(ngModel)]="classroom.course" id="course" name="course" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            <option value="">Select a course</option>
+            <option *ngFor="let course of coursesList" [value]="course.courseId">{{course.name}}</option>
+        </select>
+        </div>
+      </form>
+    </div>
+  </div>
+  
