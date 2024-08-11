@@ -1,16 +1,17 @@
+import { Student } from "./student";
+import { Teacher } from "./teacher";
+
 export class Classroom {
     name: string;
     room: string;
-    students: string[];
-    teacher: number;
-    course: number;
+    students: Student[];
+    teacher?: Teacher;
+    course?: Classroom;
   
     constructor() {
       this.name = '';
       this.room = '';
       this.students = [];
-      this.teacher = 0;
-      this.course = 0;
     }
   }
   
