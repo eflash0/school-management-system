@@ -50,6 +50,8 @@ public class TeacherService {
             existingTeacher.setLastName(teacher.getLastName());
         if (teacher.getFirstName() != null && !teacher.getFirstName().isEmpty())
             existingTeacher.setFirstName(teacher.getFirstName());
+        if (teacher.getCourse() != null)
+            existingTeacher.setCourse(teacher.getCourse());
         if (teacher.getJoinDate() != null)
             existingTeacher.setJoinDate(teacher.getJoinDate());
         if (teacher.getNationalCode() != null && !teacher.getNationalCode().isEmpty())
@@ -77,20 +79,22 @@ public class TeacherService {
     }
 
     @Transactional
-    public Teacher registerTeacherInClassroom(Long teacherId,Long classroomId){
+    public Teacher registerTeacherInClassroom(Long teacherId, Long classroomId) {
         Optional<Teacher> teacherOpt = teacherRepository.findById(teacherId);
         Optional<Classroom> classroomOpt = classroomRepository.findById(classroomId);
-        if(teacherOpt.isPresent() && classroomOpt.isPresent()){
+        if (teacherOpt.isPresent() && classroomOpt.isPresent()) {
             Teacher teacher = teacherOpt.get();
             Classroom classroom = classroomOpt.get();
-            if(!teacher.getClassrooms().contains(classroom)){
+            if (!teacher.getClassrooms().contains(classroom)) {
                 teacher.getClassrooms().add(classroom);
-                return teacherRepository.save(teacher);
-            }
-            else{
+                classroom.setTeacher(teacher);
+                Teacher updatedTeacher = teacherRepository.save(teacher);
+                return updatedTeacher;
+            } 
+            else {
                 throw new IllegalArgumentException("Teacher is already registered in the classroom");
             }
-        }
+        } 
         else {
             throw new IllegalArgumentException("Teacher or classroom not found");
         }

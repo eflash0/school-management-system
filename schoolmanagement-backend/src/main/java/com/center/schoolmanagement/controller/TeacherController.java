@@ -73,12 +73,14 @@ public class TeacherController {
     ,@PathVariable Long classroomId){
         try{
             Teacher updatedTeacher = teacherService.registerTeacherInClassroom(teacherId, classroomId);
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("id")
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(updatedTeacher.getTeacherId()).toUri();
             return ResponseEntity.created(location).body(updatedTeacher);
         }
-        catch(IllegalArgumentException e){
+        catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred: " + e.getMessage());
         }
     }
 
@@ -87,7 +89,7 @@ public class TeacherController {
     @PathVariable Long classroomId){
         try{
             Teacher updatedTeacher = teacherService.unregisterTeacherFromClassroom(teacherId, classroomId);
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("id")
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(updatedTeacher.getTeacherId()).toUri();
             return ResponseEntity.created(location).body(updatedTeacher);
         }

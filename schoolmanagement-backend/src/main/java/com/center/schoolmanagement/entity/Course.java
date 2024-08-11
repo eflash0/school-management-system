@@ -18,6 +18,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "courses")
@@ -25,7 +26,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonIgnoreProperties({"classrooms","students"})
+@JsonIgnoreProperties({"classrooms","students","teachers"})
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +36,8 @@ public class Course {
     private List<Student> students= new ArrayList<>();
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Classroom> classrooms;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Teacher> teachers;
     public Course(String name) {
         this.name = name;
     }

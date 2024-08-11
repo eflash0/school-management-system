@@ -20,6 +20,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Table
 @Entity
@@ -27,6 +28,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 @JsonIgnoreProperties({"students"})
 public class Classroom {
     @Id
@@ -40,7 +42,7 @@ public class Classroom {
     private String room;
     @ManyToMany(mappedBy = "classrooms")
     private List<Student> students;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
     @ManyToOne
@@ -57,6 +59,4 @@ public class Classroom {
         this.teacher = teacher;
         this.course = course;
     }
-
-    
 }
