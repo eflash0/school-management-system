@@ -68,7 +68,7 @@ export class StudentDetailsComponent implements OnInit {
         );
       }
       else{
-        this.router.navigate(['get.students']);
+        this.router.navigate(['get-students']);
       }
   }
 

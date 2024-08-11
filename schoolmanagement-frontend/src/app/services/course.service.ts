@@ -19,6 +19,12 @@ export class CourseService {
     return this.http.get<any>(this.url,{ headers });
   }
 
+  getCourseById(id : number) : Observable<any>{
+    const idUrl = `${this.url}/${id}`; 
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    return this.http.get<any>(idUrl,{ headers });
+  }
+
   updateCourse(idCourse : number ,course : any) : Observable<any>{
     const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     const updateUrl = `${this.url}/${idCourse}`;

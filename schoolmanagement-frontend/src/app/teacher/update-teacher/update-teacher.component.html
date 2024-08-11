@@ -18,6 +18,13 @@
           <label for="nationalCode" class="block text-gray-700 font-medium mb-2">National Code</label>
           <input [(ngModel)]="teacher.nationalCode" type="text" id="nationalCode" name="nationalCode" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
         </div>
+        <div class="mb-4">
+          <label for="course" class="block text-gray-700 font-medium mb-2">Select Course</label>
+          <select [(ngModel)]="courseId" id="course" name="course" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="">Select a course</option>
+              <option *ngFor="let course of courses" [value]="course.courseId">{{course.name}}</option>
+          </select>
+        </div>
         <div class="flex justify-between items-center">
           <button type="submit" class="btn-blue text-white px-4 py-2 rounded-lg hover:bg-blue-600">Update Teacher</button>
           <button type="button" (click)="onCancel()" class="text-blue-500 hover:underline">Cancel</button>

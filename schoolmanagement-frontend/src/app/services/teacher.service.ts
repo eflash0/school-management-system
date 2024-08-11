@@ -51,4 +51,10 @@ export class TeacherService {
     return this.http.delete<any>(unregUrl,{ headers });
   }
 
+  getTeacherClassrooms(teacherId : number ) : Observable<any>{
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const classroomsUrl = `${this.url}/${teacherId}/classrooms`;
+    return this.http.get<any>(classroomsUrl,{ headers });
+  }
+
 }

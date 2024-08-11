@@ -11,6 +11,7 @@ import { GetStudentsComponent } from './student/get-students/get-students.compon
 import { GetCoursesComponent } from './course/get-courses/get-courses.component';
 import { StudentDetailsComponent } from './student/student-details/student-details.component';
 import { GetTeachersComponent } from './teacher/get-teachers/get-teachers.component';
+import { TeacherDetailsComponent } from './teacher/teacher-details/teacher-details.component';
 
 
 export const routes: Routes = [
@@ -24,5 +25,6 @@ export const routes: Routes = [
   { path: 'get-teachers', component: GetTeachersComponent,canActivate:[authGuard]},
   { path: 'get-courses', component: GetCoursesComponent,canActivate:[authGuard]},
   { path: 'student-details', component: StudentDetailsComponent,canActivate:[authGuard]},
+  { path: 'teacher-details', component: TeacherDetailsComponent,canActivate:[authGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' } // Default route
 ];
