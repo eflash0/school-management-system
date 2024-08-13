@@ -30,4 +30,10 @@ export class ClassroomService {
     const deleteUrl = `${this.url}/${classroomId}`;
     return this.http.delete<any>(deleteUrl,{ headers });
   }
+
+  getClassroomStudents(classroomId : number) : Observable<any>{
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const studentsUrl = `${this.url}/${classroomId}/students`;
+    return this.http.get<any>(studentsUrl,{ headers })
+  } 
 }

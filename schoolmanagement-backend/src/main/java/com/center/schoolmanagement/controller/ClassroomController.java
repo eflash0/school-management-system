@@ -1,11 +1,14 @@
 package com.center.schoolmanagement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.center.schoolmanagement.entity.Classroom;
 import com.center.schoolmanagement.entity.Student;
+import com.center.schoolmanagement.entity.Teacher;
 import com.center.schoolmanagement.service.ClassroomService;
 
 import java.net.URI;
@@ -55,5 +58,35 @@ public class ClassroomController {
     public ResponseEntity<List<Student>> getClassroomStudents(@PathVariable Long classroomId){
         List<Student> students = classroomService.getClassroomStudents(classroomId);
         return ResponseEntity.ok(students);
+    }
+
+    @PostMapping("/{classroomId}/students/{studentId}")
+    public ResponseEntity<Object> registerStudentInClassroom(@PathVariable Long classroomId,@PathVariable Long studentId){
+        try{
+            Student updatedStudent = classroomService.registerStudentInClassroom(classroomId,studentId);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
+            .buildAndExpand(updatedStudent.getStudentId()).toUri();
+            return ResponseEntity.ok(location);
+        }
+        catch(IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred: " + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{classroomId}/students/{studentId}")
+    public ResponseEntity<Object> unregisterStudentrFromclassroom(@PathVariable Long classroomId,
+    @PathVariable Long studentId){
+        try{
+            Student updatedClassroom = classroomService.unregisterStudentFromClassroom(classroomId, studentId);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+            .buildAndExpand(updatedClassroom.getStudentId()).toUri();
+            return ResponseEntity.created(location).body(updatedClassroom);
+        }
+        catch(IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

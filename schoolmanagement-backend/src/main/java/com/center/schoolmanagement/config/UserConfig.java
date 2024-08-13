@@ -12,7 +12,6 @@ import com.center.schoolmanagement.entity.Role;
 import com.center.schoolmanagement.entity.Student;
 import com.center.schoolmanagement.entity.Teacher;
 import com.center.schoolmanagement.entity.User;
-import com.center.schoolmanagement.repository.TeacherRepository;
 import com.center.schoolmanagement.service.ClassroomService;
 import com.center.schoolmanagement.service.CourseService;
 import com.center.schoolmanagement.service.StudentService;
@@ -48,8 +47,9 @@ public class UserConfig {
             studentService.registerStudentInClassroom(abdoStudent.getStudentId(), classroom2.getClassroomId());
             
             teacherService.registerTeacherInClassroom(teacher1.getTeacherId(),classroom2.getClassroomId());
-            System.out.println(abdoStudent.getClassrooms().size()+"\n");
-            System.out.println(teacher1.getClassrooms().size());
+            teacherService.registerTeacherInClassroom(teacher2.getTeacherId(),classroom1.getClassroomId());
+            // System.out.println(abdoStudent.getClassrooms().size()+"\n");
+            // System.out.println(teacher1.getClassrooms().size());
         };
     }
 }

@@ -35,8 +35,6 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     private List<Student> students= new ArrayList<>();
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Classroom> classrooms;
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Teacher> teachers;
     public Course(String name) {
         this.name = name;

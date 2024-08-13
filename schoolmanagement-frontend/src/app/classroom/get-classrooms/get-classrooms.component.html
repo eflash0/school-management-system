@@ -43,7 +43,7 @@
                             <p class="text-gray-900 whitespace-no-wrap">{{classroom?.teacher?.firstName}} {{classroom?.teacher?.lastName}}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">{{classroom?.course?.name}}</p>
+                            <p class="text-gray-900 whitespace-no-wrap">{{classroom?.teacher?.course.name}}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
                             <button (click)="viewStudents(classroom.classroomId)" class="btn-blue text-white px-4 py-2 rounded-lg mr-2">Details</button>
@@ -51,7 +51,6 @@
                             <button (click)="deleteClassroom(classroom.classroomId)" class="btn-red text-white px-4 py-2 rounded-lg">Delete</button>
                         </td>
                     </tr>
-                    <!-- Add more classrooms as needed -->
                 </tbody>
             </table>
         </div>

@@ -34,18 +34,30 @@ export class UpdateTeacherComponent implements OnInit{
         response => {
           this.teacher.course = response;
           console.log(this.teacher.course);
+          this.teacherService.updateTeacher(this.teacher.teacherId,this.teacher).subscribe(
+            response => {
+              console.log('teacher updated successfully',response);
+              console.log(this.teacher.course);
+              this.dialogRef.close();
+            },
+            error => {console.error('error updating teacher',error);
+            }
+          );
         }
       );
     }
-    this.teacherService.updateTeacher(this.teacher.teacherId,this.teacher).subscribe(
-      response => {
-        console.log('teacher updated successfully',response);
-        console.log(this.teacher.course);
-        this.dialogRef.close();
-      },
-      error => {console.error('error updating teacher',error);
-      }
-    );
+    else{
+      this.teacherService.updateTeacher(this.teacher.teacherId,this.teacher).subscribe(
+        response => {
+          console.log('teacher updated successfully',response);
+          console.log(this.teacher.course);
+          this.dialogRef.close();
+        },
+        error => {console.error('error updating teacher',error);
+        }
+      );
+    }
+    
   }
 
   onCancel() : void{

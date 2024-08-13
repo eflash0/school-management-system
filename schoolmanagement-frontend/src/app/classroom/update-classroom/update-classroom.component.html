@@ -1,1 +1,23 @@
-<p>update-classroom works!</p>
+<div class="dialog-content">
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Update classroom</h2>
+      <form (ngSubmit)="updateClassroom()" #classroomForm="ngForm">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 font-medium mb-2">name</label>
+          <input [(ngModel)]="classroom.name" type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
+          <label for="room" class="block text-gray-700 font-medium mb-2">room</label>
+          <input [(ngModel)]="classroom.room" type="text" id="room" name="room" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
+          <label for="teacher" class="block text-gray-700 font-medium mb-2">teacher</label>
+          <select [(ngModel)]="teacherId" id="teacher" name="teacher" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            <option [value]="null">Select a teacher</option>
+            <option *ngFor="let teacher of teachersList" [value]="teacher.teacherId">{{teacher.firstName}} {{teacher.lastName}}</option>
+          </select>
+        </div>
+        <div class="flex justify-between items-center">
+          <button type="submit" class="btn-blue text-white px-4 py-2 rounded-lg hover:bg-blue-600">Update classroom</button>
+          <button type="button" (click)="onCancel()" class="text-blue-500 hover:underline">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

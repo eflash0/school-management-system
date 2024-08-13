@@ -51,7 +51,7 @@ public class Teacher {
     private LocalDate joinDate;
     @ManyToOne
     private Course course;
-    @OneToMany(mappedBy = "teacher",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "teacher",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     List<Classroom> classrooms = new ArrayList<>();
     public Teacher(@NotEmpty(message = "first name can t be empty") String firstName,
             @NotEmpty(message = "last name can t be empty") String lastName,

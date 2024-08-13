@@ -6,7 +6,6 @@ export class Classroom {
     room: string;
     students: Student[];
     teacher?: Teacher;
-    course?: Classroom;
   
     constructor() {
       this.name = '';

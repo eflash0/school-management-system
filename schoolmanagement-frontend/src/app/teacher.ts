@@ -6,7 +6,7 @@ export class Teacher{
     joinDate : String;
     nationalCode : String;
     course?: Course;
-    classrooms : String[];
+    classrooms? : String[];
     constructor(
         firstName: string,lastName: string,joinDate: string,nationalCode: string,
         classrooms: string[]) {

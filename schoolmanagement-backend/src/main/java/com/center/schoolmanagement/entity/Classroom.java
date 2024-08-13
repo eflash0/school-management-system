@@ -40,23 +40,19 @@ public class Classroom {
     @NotEmpty(message = "room can t be empty")
     @Column(nullable = false,unique = true)
     private String room;
-    @ManyToMany(mappedBy = "classrooms")
+    @ManyToMany(mappedBy = "classrooms",cascade = CascadeType.ALL)
     private List<Student> students;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacher_id")
+    @JoinColumn(name = "teacher_id",nullable = true)
     private Teacher teacher;
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
     public Classroom(String name,String room) {
         this.name = name;
         this.room = room;
     }
     public Classroom(@NotEmpty(message = "name can t be empty") String name,
-            @NotEmpty(message = "room can t be empty") String room, Teacher teacher, Course course) {
+            @NotEmpty(message = "room can t be empty") String room, Teacher teacher) {
         this.name = name;
         this.room = room;
         this.teacher = teacher;
-        this.course = course;
     }
 }

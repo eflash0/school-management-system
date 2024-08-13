@@ -1,22 +1,13 @@
 package com.center.schoolmanagement.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.center.schoolmanagement.dto.JwtResponse;
-import com.center.schoolmanagement.dto.LoginResponse;
-import com.center.schoolmanagement.dto.UserDto;
 import com.center.schoolmanagement.entity.User;
 import com.center.schoolmanagement.security.JwtUtil;
 import com.center.schoolmanagement.service.LoginService;
 import com.center.schoolmanagement.service.UserService;
-
-import java.net.URI;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
