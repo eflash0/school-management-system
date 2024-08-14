@@ -7,9 +7,9 @@
           <input [(ngModel)]="classroom.name" type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
           <label for="room" class="block text-gray-700 font-medium mb-2">room</label>
           <input [(ngModel)]="classroom.room" type="text" id="room" name="room" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 input-blue" required>
-          <label for="teacher" class="block text-gray-700 font-medium mb-2">teacher</label>
+          <label for="teacher" class="block text-gray-700 font-medium mb-2">Select teacher</label>
           <select [(ngModel)]="teacherId" id="teacher" name="teacher" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-            <option [value]="null">Select a teacher</option>
+            <option [value]="null">Select teacher</option>
             <option *ngFor="let teacher of teachersList" [value]="teacher.teacherId">{{teacher.firstName}} {{teacher.lastName}}</option>
           </select>
         </div>

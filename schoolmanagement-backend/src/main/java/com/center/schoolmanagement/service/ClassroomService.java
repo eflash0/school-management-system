@@ -37,6 +37,10 @@ public class ClassroomService {
         return classroomRepository.findAll();
     }
 
+    public long countStudentsByClassrromId(Long classroomId){
+        return classroomRepository.countStudentsByClassrromId(classroomId);
+    }
+
     public Classroom addClassroom(Classroom classroom){
         Optional<Classroom> existClassroom = findClassroomByName(classroom.getName());
         if(existClassroom.isPresent())
@@ -75,17 +79,17 @@ public class ClassroomService {
     }
 
     @Transactional
-    public Student registerStudentInClassroom(Long studentId, Long classroomId) {
+    public Classroom registerStudentInClassroom(Long classroomId,Long studentId) {
         Optional<Student> studentOpt = studentRepository.findById(studentId);
         Optional<Classroom> classroomOpt = classroomRepository.findById(classroomId);
         if (studentOpt.isPresent() && classroomOpt.isPresent()) {
             Student student = studentOpt.get();
             Classroom classroom = classroomOpt.get();
-            if (!student.getClassrooms().contains(classroom)) {
-                student.getClassrooms().add(classroom);
+            if (!classroom.getStudents().contains(student)) {
                 classroom.getStudents().add(student);
-                Student updatedStudent = studentRepository.save(student);
-                return updatedStudent;
+                student.getClassrooms().add(classroom);
+                Classroom updatedClassroom = classroomRepository.save(classroom);
+                return updatedClassroom;
             } 
             else {
                 throw new IllegalArgumentException("Student is already registered in the classroom");
@@ -97,15 +101,16 @@ public class ClassroomService {
     }
 
     @Transactional
-    public Student unregisterStudentFromClassroom(Long studentId,Long classroomId){
+    public Classroom unregisterStudentFromClassroom(Long classroomId,Long studentId){
         Optional<Student> studentOpt = studentRepository.findById(studentId);
         Optional<Classroom> classroomOpt = classroomRepository.findById(classroomId);
         if(studentOpt.isPresent() && classroomOpt.isPresent()){
             Student student = studentOpt.get();
             Classroom classroom = classroomOpt.get();
-            if(student.getClassrooms().contains(classroom)){
+            if(classroom.getStudents().contains(student)){
+                classroom.getStudents().remove(student);
                 student.getClassrooms().remove(classroom);
-                return studentRepository.save(student);
+                return classroomRepository.save(classroom);
             }
             else{
                 throw new IllegalArgumentException("the Student isn't registered in this classroom");

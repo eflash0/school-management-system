@@ -109,6 +109,7 @@ public class TeacherService {
             Classroom classroom = classroomOpt.get();
             if(teacher.getClassrooms().contains(classroom)){
                 teacher.getClassrooms().remove(classroom);
+                classroom.setTeacher(null);
                 return teacherRepository.save(teacher);
             }
             else{

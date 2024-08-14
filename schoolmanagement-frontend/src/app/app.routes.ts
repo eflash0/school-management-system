@@ -11,6 +11,7 @@ import { StudentDetailsComponent } from './student/student-details/student-detai
 import { GetTeachersComponent } from './teacher/get-teachers/get-teachers.component';
 import { TeacherDetailsComponent } from './teacher/teacher-details/teacher-details.component';
 import { GetClassroomsComponent } from './classroom/get-classrooms/get-classrooms.component';
+import { ClassroomDetailsComponent } from './classroom/classroom-details/classroom-details.component';
 
 
 export const routes: Routes = [
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'student-details', component: StudentDetailsComponent,canActivate:[authGuard]},
   { path: 'teacher-details', component: TeacherDetailsComponent,canActivate:[authGuard]},
   { path: 'get-classrooms', component: GetClassroomsComponent,canActivate:[authGuard]},
+  { path: 'classrooms/:classroomId/students', component: ClassroomDetailsComponent,canActivate:[authGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' } // Default route
 ];

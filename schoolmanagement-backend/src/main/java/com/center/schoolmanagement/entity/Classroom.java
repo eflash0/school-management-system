@@ -2,6 +2,7 @@ package com.center.schoolmanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -15,6 +16,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -41,7 +43,7 @@ public class Classroom {
     @Column(nullable = false,unique = true)
     private String room;
     @ManyToMany(mappedBy = "classrooms",cascade = CascadeType.ALL)
-    private List<Student> students;
+    private List<Student> students = new ArrayList<>();
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id",nullable = true)
     private Teacher teacher;

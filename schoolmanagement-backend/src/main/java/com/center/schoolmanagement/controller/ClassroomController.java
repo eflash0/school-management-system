@@ -60,12 +60,17 @@ public class ClassroomController {
         return ResponseEntity.ok(students);
     }
 
+    @GetMapping("/{classroomId}/students/count")
+    public long countStudentsByClassrromId(@PathVariable Long classroomId){
+        return classroomService.countStudentsByClassrromId(classroomId);
+    }
+
     @PostMapping("/{classroomId}/students/{studentId}")
     public ResponseEntity<Object> registerStudentInClassroom(@PathVariable Long classroomId,@PathVariable Long studentId){
         try{
-            Student updatedStudent = classroomService.registerStudentInClassroom(classroomId,studentId);
+            Classroom updatedClassroom = classroomService.registerStudentInClassroom(classroomId,studentId);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-            .buildAndExpand(updatedStudent.getStudentId()).toUri();
+            .buildAndExpand(updatedClassroom.getClassroomId()).toUri();
             return ResponseEntity.ok(location);
         }
         catch(IllegalArgumentException e){
@@ -80,9 +85,9 @@ public class ClassroomController {
     public ResponseEntity<Object> unregisterStudentrFromclassroom(@PathVariable Long classroomId,
     @PathVariable Long studentId){
         try{
-            Student updatedClassroom = classroomService.unregisterStudentFromClassroom(classroomId, studentId);
+            Classroom updatedClassroom = classroomService.unregisterStudentFromClassroom(classroomId, studentId);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-            .buildAndExpand(updatedClassroom.getStudentId()).toUri();
+            .buildAndExpand(updatedClassroom.getClassroomId()).toUri();
             return ResponseEntity.created(location).body(updatedClassroom);
         }
         catch(IllegalArgumentException e){

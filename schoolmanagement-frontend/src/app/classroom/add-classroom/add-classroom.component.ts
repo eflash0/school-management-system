@@ -18,7 +18,7 @@ export class AddClassroomComponent implements OnInit {
   classroom : Classroom = new Classroom();
   coursesList : any;
   teachersList : any;
-  teacherId : number = 0;
+  teacherId : number | null = null;
   constructor(private classroomService : ClassroomService,public dialogRef : MatDialogRef<AddClassroomComponent>,
     private teacherService : TeacherService,private courseService : CourseService) {}
   ngOnInit(): void {
@@ -46,9 +46,15 @@ export class AddClassroomComponent implements OnInit {
         }
       );
     }
-    
-    
-    
+    else {
+      this.classroomService.addClassroom(this.classroom).subscribe(
+        response => {
+          console.log('classroom added successfully',response);
+          this.dialogRef.close();
+        },
+        error => {console.error('error adding classroom',error);}
+      );
+    }
   }
 
   onCancel() : void{

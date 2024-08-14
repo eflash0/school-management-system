@@ -13,9 +13,9 @@
         </div>
         <div class="bg-white shadow-md rounded-lg p-6 mb-6">
             <h2 class="text-xl font-bold text-gray-800 mb-4">Teacher Information</h2>
-            <p class="text-gray-700"><strong>Classroom Name:</strong> {{classroom.name}}</p>
-            <p class="text-gray-700"><strong>Teacher:</strong> {{classroom.teacher.lastName}} {{classroom.teacher.firstName}}</p>
-            <p class="text-gray-700"><strong>Course:</strong> {{classroom.teacher.course?.name}}</p>
+            <p class="text-gray-700"><strong>Classroom Name:</strong> {{classroom?.name}}</p>
+            <p class="text-gray-700"><strong>Teacher:</strong> {{classroom?.teacher.lastName}} {{classroom?.teacher.firstName}}</p>
+            <p class="text-gray-700"><strong>Course:</strong> {{classroom?.teacher.course?.name}}</p>
             <p class="text-gray-700"><strong>Number Of Students:</strong> {{studentsNumber}}</p>
         </div>
 
@@ -54,7 +54,7 @@
             </div>
             <ng-template #noRegisteredStudents>
                 <div class="p-6 text-center text-gray-600">
-                    <p>The Teacher is not registered in any classroom.</p>
+                    <p>The classroom has no students.</p>
                 </div>
             </ng-template>
         </div>
@@ -66,8 +66,8 @@
                 <div class="mb-4">
                     <label for="classroom" class="block text-gray-700 font-medium mb-2">Select Classroom</label>
                     <select [(ngModel)]="selectedStudentId" id="classroom" name="classroom" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-                        <option value="">Select a classroom</option>
-                        <option *ngFor="let student of studentsList" [value]="student.studentId">{{student.name}}</option>
+                        <option value="">Select a student</option>
+                        <option *ngFor="let student of studentsList" [value]="student.studentId">{{student.lastName}} {{student.firstName}}</option>
                     </select>
                 </div>
                 <div class="flex justify-end">
