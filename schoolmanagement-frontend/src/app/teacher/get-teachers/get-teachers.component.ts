@@ -70,6 +70,8 @@ export class GetTeachersComponent implements OnInit {
   }
 
   viewDetails(teacherId : number):void{
-    this.router.navigate(['teacher-details'],{state:{teacherId}})
+    //this.router.navigate(['teacher-details'],{state:{teacherId}});
+    this.router.navigate(['/teachers', teacherId, 'classrooms']);
+
   }
 }

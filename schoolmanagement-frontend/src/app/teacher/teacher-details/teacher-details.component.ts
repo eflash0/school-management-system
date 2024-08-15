@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ClassroomService } from '../../services/classroom.service';
 
 @Component({
@@ -21,38 +21,42 @@ export class TeacherDetailsComponent implements OnInit {
   selectedClassroomId : String = '';
   teacher : any = {};
   teacherClassrooms : any = {};
+  classroomsNumber : number = 0;
   constructor (private teacherService:TeacherService,private classroomService : ClassroomService,
-    public dialog : MatDialog,private router : Router) {}
+    public dialog : MatDialog,private route : ActivatedRoute) {}
   ngOnInit(): void {
-      this.teacherId = history.state.teacherId; // here i should pass the id from get-Teachers and use 
+      //this.teacherId = history.state.teacherId; // here i should pass the id from get-Teachers and use 
       //TeacherService to get the Teacher to have a the Teacher updated when registered in a course
       // console.log(this.Teacher.courses.length);
-      if(this.teacherId>0){
-        this.teacherService.getTeacherById(this.teacherId).subscribe(
-          response => {console.log('Teacher fetched correctly',response);
-            this.teacher = response;
-          },
-          error => {console.error('error fetching Teacher',error);}
-        );
-        
-        this.classroomService.getClassrooms().subscribe(
-          response => {console.log('classrooms are fetched',response);
-            this.classroomsList = response;
-          },
-          error => {console.error('error fetching for classrooms',error);
-          }
-        );
-        this.teacherService.getTeacherClassrooms(this.teacherId).subscribe(
-          response => {
-            this.teacherClassrooms = response;
-          },
-          error => {console.error('error fetching Teacher classrooms',error);
-          }
-        );
-      }
-      else{
-        this.router.navigate(['get-teachers']);
-      }
+      this.teacherId = +this.route.snapshot.paramMap.get('teacherId')!;
+      console.log(this.teacherId);
+      
+      this.teacherService.getTeacherById(this.teacherId).subscribe(
+        response => {console.log('Teacher fetched correctly',response);
+          this.teacher = response;
+        },
+        error => {console.error('error fetching Teacher',error);}
+      );
+      
+      this.classroomService.getClassrooms().subscribe(
+        response => {console.log('classrooms are fetched',response);
+          this.classroomsList = response;
+        },
+        error => {console.error('error fetching for classrooms',error);
+        }
+      );
+      this.teacherService.getTeacherClassrooms(this.teacherId).subscribe(
+        response => {
+          this.teacherClassrooms = response;
+        },
+        error => {console.error('error fetching Teacher classrooms',error);
+        }
+      );  
+      this.teacherService.countClassroomsByTeacher(this.teacherId).subscribe(
+        response => {this.classroomsNumber = response;},
+        error =>{console.error('error fetching number of classrooms'); }
+      );
+      
   }
 
   registerTeacherInClassroom() : void{

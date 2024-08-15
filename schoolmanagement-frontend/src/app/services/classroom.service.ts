@@ -25,11 +25,10 @@ export class ClassroomService {
     return this.http.get<any>(this.url,{ headers });
   }
 
-  countStudentByClassroom(classroomId : number) : Observable<number>{
+  countStudentsByClassroom(classroomId : number) : Observable<number>{
     const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     const countUrl = `${this.url}/${classroomId}/students/count`;
     return this.http.get<any>(countUrl,{ headers });
-
   }
 
   updateClassroom(classroomId : number ,classroom : any) : Observable<any>{

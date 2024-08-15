@@ -30,6 +30,10 @@ public class TeacherService {
         return teacherRepository.findByCode(code);
     }
 
+    public long countClassroomsByTeacherId(Long teacherId){
+        return teacherRepository.countClassroomsByTeacherId(teacherId);
+    }
+
     public Teacher registerTeacher(Teacher teacher){
         String code;
         Optional<Teacher> teacherExist = teacherRepository.findByCode(teacher.getCode());

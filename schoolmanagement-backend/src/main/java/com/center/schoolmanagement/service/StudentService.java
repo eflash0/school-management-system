@@ -34,6 +34,14 @@ public class StudentService {
         return studentRepository.findByCode(code);
     }
 
+    public long countCoursesByStudentId(Long studentId){
+        return studentRepository.countCoursesByStudentId(studentId);
+    }
+
+    public long countClassroomsByStudentId(Long studentId){
+        return studentRepository.countClassroomsByStudentId(studentId);
+    }
+
     public Student registerStudent(Student student){
         String code;
         Optional<Student> studentExist = studentRepository.findByCode(student.getCode());

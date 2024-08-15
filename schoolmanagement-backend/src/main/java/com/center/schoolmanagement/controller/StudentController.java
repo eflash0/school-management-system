@@ -40,6 +40,17 @@ public class StudentController {
         return student.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/{studentId}/courses/count")
+    public long countCoursesByStudentId(@PathVariable Long studentId){
+        return studentService.countCoursesByStudentId(studentId);
+    }
+
+    @GetMapping("/{studentId}/classrooms/count")
+    public long countClassroomsByStudentId(@PathVariable Long studentId){
+        return studentService.countClassroomsByStudentId(studentId);
+    }
+
+
     @PostMapping
     public ResponseEntity<Object> addStudent(@RequestBody Student student){
         Student savedStudent = studentService.registerStudent(student);

@@ -11,41 +11,25 @@
     <div class="flex">
         <div class="bg-white w-64 min-h-screen shadow-md">
             <div class="p-4">
-                <a href="get-users" class="flex items-center text-gray-800 space-x-2">
-                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/house-fill.svg" class="h-6 w-6"/>
+                <a (click)="goUsers()" class="flex items-center text-gray-800 space-x-2 cursor-pointer">
+                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/person-fill.svg" class="h-6 w-6"/>
                     <span>Users</span>
                 </a>
-                <a href="get-students" class="flex items-center text-gray-800 space-x-2 mt-4">
+                <a (click)="goStudents()" class="flex items-center text-gray-800 space-x-2 mt-4 cursor-pointer">
                     <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/people-fill.svg" class="h-6 w-6"/>
                     <span>Students</span>
                 </a>
-                <a href="get-courses" class="flex items-center text-gray-800 space-x-2 mt-4">
-                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/people-fill.svg" class="h-6 w-6"/>
+                <a (click)="goCourses()" class="flex items-center text-gray-800 space-x-2 mt-4 cursor-pointer">
+                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/book-fill.svg" class="h-6 w-6"/>
                     <span>Courses</span>
                 </a>
-                <a href="#" class="flex items-center text-gray-800 space-x-2 mt-4">
+                <a (click)="goTeachers()" class="flex items-center text-gray-800 space-x-2 mt-4 cursor-pointer">
                     <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/person-fill.svg" class="h-6 w-6"/>
                     <span>Teachers</span>
                 </a>
-                <a href="#" class="flex items-center text-gray-800 space-x-2 mt-4">
-                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/book-fill.svg" class="h-6 w-6"/>
+                <a (click)="goClassrooms()" class="flex items-center text-gray-800 space-x-2 mt-4 cursor-pointer">
+                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/person-video.svg" class="h-6 w-6"/>
                     <span>Classes</span>
-                </a>
-                <a href="#" class="flex items-center text-gray-800 space-x-2 mt-4">
-                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/calendar-check-fill.svg" class="h-6 w-6"/>
-                    <span>Attendance</span>
-                </a>
-                <a href="#" class="flex items-center text-gray-800 space-x-2 mt-4">
-                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/bar-chart-fill.svg" class="h-6 w-6"/>
-                    <span>Grades</span>
-                </a>
-                <a href="#" class="flex items-center text-gray-800 space-x-2 mt-4">
-                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/file-earmark-text-fill.svg" class="h-6 w-6"/>
-                    <span>Reports</span>
-                </a>
-                <a href="#" class="flex items-center text-gray-800 space-x-2 mt-4">
-                    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/gear-fill.svg" class="h-6 w-6"/>
-                    <span>Settings</span>
                 </a>
             </div>
         </div>
@@ -55,20 +39,24 @@
             <!-- Overview Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-lg font-semibold text-gray-700">Total Users</h2>
+                    <p class="text-2xl font-bold text-gray-900">{{usersCount}}</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
                     <h2 class="text-lg font-semibold text-gray-700">Total Students</h2>
-                    <p class="text-2xl font-bold text-gray-900">1,234</p>
+                    <p class="text-2xl font-bold text-gray-900">{{studentsCount}}</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-lg font-semibold text-gray-700">Total Courses</h2>
+                    <p class="text-2xl font-bold text-gray-900">{{coursesCount}}</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg shadow-md">
                     <h2 class="text-lg font-semibold text-gray-700">Total Teachers</h2>
-                    <p class="text-2xl font-bold text-gray-900">56</p>
+                    <p class="text-2xl font-bold text-gray-900">{{teachersCount}}</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg shadow-md">
-                    <h2 class="text-lg font-semibold text-gray-700">Attendance Rate</h2>
-                    <p class="text-2xl font-bold text-gray-900">98%</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <h2 class="text-lg font-semibold text-gray-700">Average Grade</h2>
-                    <p class="text-2xl font-bold text-gray-900">B+</p>
+                    <h2 class="text-lg font-semibold text-gray-700">Total Classrooms</h2>
+                    <p class="text-2xl font-bold text-gray-900">{{classroomsCount}}</p>
                 </div>
             </div>
 

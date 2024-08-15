@@ -24,7 +24,7 @@ export const routes: Routes = [
   { path: 'get-teachers', component: GetTeachersComponent,canActivate:[authGuard]},
   { path: 'get-courses', component: GetCoursesComponent,canActivate:[authGuard]},
   { path: 'student-details', component: StudentDetailsComponent,canActivate:[authGuard]},
-  { path: 'teacher-details', component: TeacherDetailsComponent,canActivate:[authGuard]},
+  { path: 'teachers/:teacherId/classrooms', component: TeacherDetailsComponent,canActivate:[authGuard]},
   { path: 'get-classrooms', component: GetClassroomsComponent,canActivate:[authGuard]},
   { path: 'classrooms/:classroomId/students', component: ClassroomDetailsComponent,canActivate:[authGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' } // Default route

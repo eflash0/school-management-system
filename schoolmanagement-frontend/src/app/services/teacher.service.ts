@@ -57,4 +57,10 @@ export class TeacherService {
     return this.http.get<any>(classroomsUrl,{ headers });
   }
 
+  countClassroomsByTeacher(teacherId : number) : Observable<number>{
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const countUrl = `${this.url}/${teacherId}/classrooms/count`;
+    return this.http.get<any>(countUrl,{ headers });
+  }
+
 }

@@ -42,7 +42,7 @@ export class ClassroomDetailsComponent implements OnInit {
       response => {this.classroomStudents = response;},
       error => {console.error('error fetching students of this class',error);}
     );
-    this.classroomService.countStudentByClassroom(this.classroomId).subscribe(
+    this.classroomService.countStudentsByClassroom(this.classroomId).subscribe(
       response => {this.studentsNumber=response;},
       error => {console.error('error fetching students count',error);}
     );

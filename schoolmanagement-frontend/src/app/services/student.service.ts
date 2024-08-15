@@ -75,4 +75,15 @@ export class StudentService {
     return this.http.delete<any>(unregUrl,{ headers });
   }
 
+  countCoursesByStudent(studentId : number) : Observable<number>{
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const countUrl = `${this.url}/${studentId}/courses/count`;
+    return this.http.get<any>(countUrl,{ headers });
+  }
+
+  countClassroomsByStudent(studentId : number) : Observable<number>{
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    const countUrl = `${this.url}/${studentId}/classrooms/count`;
+    return this.http.get<any>(countUrl,{ headers });
+  }
 }

@@ -24,6 +24,8 @@ export class StudentDetailsComponent implements OnInit {
   student : any = {};
   studentCourses : any = {};
   studentClassrooms : any = {};
+  coursesNumber : number = 0;
+  classroomsNumber : number = 0;
   constructor (private courseService : CourseService,private studentService:StudentService,
   private classroomService : ClassroomService,public dialog : MatDialog,private router : Router) {}
   ngOnInit(): void {
@@ -64,6 +66,16 @@ export class StudentDetailsComponent implements OnInit {
             this.studentClassrooms = response;
           },
           error => {console.error('error fetching student classrooms',error);
+          }
+        );
+        this.studentService.countCoursesByStudent(this.studentId).subscribe(
+          response => {this.coursesNumber = response;},
+          error => {console.error('error fetching number of courses',error);
+          }
+        );
+        this.studentService.countClassroomsByStudent(this.studentId).subscribe(
+          response => {this.classroomsNumber = response;},
+          error => {console.error('error fetching number of classrooms',error);
           }
         );
       }

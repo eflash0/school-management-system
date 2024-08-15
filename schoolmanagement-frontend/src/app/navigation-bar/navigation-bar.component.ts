@@ -16,4 +16,28 @@ export class NavigationBarComponent {
     this.loginService.logout();
     this.router.navigate(['/login']);
   }
+
+  goUsers() : void {
+    this.router.navigate(['/get-users']);
+  }
+
+  goStudents() : void {
+    this.router.navigate(['/get-students']);
+  }
+
+  goCourses() : void {
+    this.router.navigate(['/get-courses']);
+  }
+
+  goTeachers() : void {
+    this.router.navigate(['/get-teachers']);
+  }
+
+  goClassrooms() : void {
+    this.router.navigate(['/get-classrooms']);
+  }
+
+  goDashboard() : void {
+    this.router.navigate(['/dashboard']);
+  }
 }

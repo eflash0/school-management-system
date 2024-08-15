@@ -39,6 +39,11 @@ public class TeacherController {
         return Teacher.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/{teacherId}/classrooms/count")
+    public long countClassroomsByTeacherId(@PathVariable Long teacherId){
+        return teacherService.countClassroomsByTeacherId(teacherId);
+    }
+
     @PostMapping
     public ResponseEntity<Object> addTeacher(@RequestBody Teacher teacher){
         Teacher savedTeacher = teacherService.registerTeacher(teacher);
