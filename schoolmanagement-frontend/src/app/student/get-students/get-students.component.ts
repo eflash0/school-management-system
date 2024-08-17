@@ -6,27 +6,30 @@ import { AddStudentComponent } from '../add-student/add-student.component';
 import { UpdateStudentComponent } from '../update-student/update-student.component';
 import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-get-students',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './get-students.component.html',
   styleUrl: './get-students.component.css'
 })
 export class GetStudentsComponent implements OnInit {
   studentList : any;
+  filteredStudentList : any;
   constructor (private studentService : StudentService,public dialog : MatDialog,
   private router:Router) {}
   ngOnInit(): void {
       this.studentService.getAllStudents().subscribe(
         response => {
           this.studentList = response;
+          this.filteredStudentList = [...this.studentList];
         },
         error => {
           console.error('error fetching students',error);
           
         }
-      )
+      );
   }
 
   addStudent() : void{
@@ -71,5 +74,17 @@ export class GetStudentsComponent implements OnInit {
 
   viewDetails(studentId : number):void{
     this.router.navigate(['student-details'],{state:{studentId}})
+  }
+
+  searchStudents(event : Event) : void{
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredStudentList = this.studentList.filter((student : any) => {
+      return (
+        student.firstName.toLowerCase().includes(searchTerm) ||
+        student.lastName.toLowerCase().includes(searchTerm) ||
+        student.code.toLowerCase().includes(searchTerm) ||
+        student.nationalCode.toLowerCase().includes(searchTerm) 
+      );
+    });
   }
 }

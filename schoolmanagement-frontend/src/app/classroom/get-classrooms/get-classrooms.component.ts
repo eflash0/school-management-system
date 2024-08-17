@@ -18,10 +18,12 @@ export class GetClassroomsComponent implements OnInit {
   constructor(private classroomService : ClassroomService,public dialog : MatDialog,
     private router : Router) {}
   classroomList : any;  
+  filteredClassroomList : any;
   ngOnInit(): void {
     this.classroomService.getClassrooms().subscribe(
       response => {
         this.classroomList = response;
+        this.filteredClassroomList = this.classroomList;
         console.log('classrooms fetched correctly',response);
       },
       error => {console.error('error fetching classrooms',error);
@@ -62,5 +64,12 @@ export class GetClassroomsComponent implements OnInit {
 
   viewStudents(classroomId : number) : void{
     this.router.navigate(['/classrooms', classroomId, 'students']);
+  }
+
+  searchClassrooms(event : Event) : void{
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredClassroomList = this.classroomList.filter((classroom : any) => {
+      return (classroom.name.toLowerCase().includes(searchTerm));
+    });
   }
 }

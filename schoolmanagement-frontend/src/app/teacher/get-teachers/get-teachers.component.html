@@ -3,8 +3,16 @@
         <h1 class="text-2xl font-bold text-gray-800">Teachers List</h1>
         <button (click)="addTeacher()" class="btn-blue text-white px-4 py-2 rounded-lg">Add Teacher</button>
     </div>
+    <div class="mb-4">
+        <input 
+            type="text" 
+            placeholder="Search teachers..." 
+            (input)="searchTeachers($event)" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+    </div>
     <div class="bg-white shadow-md rounded-lg overflow-x-auto">
-        <div *ngIf="teacherList && teacherList.length>0; else noTeachers">
+        <div *ngIf="filteredTeacherList && filteredTeacherList.length>0; else noTeachers">
             <table class="min-w-full leading-normal">
                 <thead>
                     <tr>
@@ -35,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let teacher of teacherList">
+                    <tr *ngFor="let teacher of filteredTeacherList">
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">{{teacher.teacherId}}</p>
                         </td>

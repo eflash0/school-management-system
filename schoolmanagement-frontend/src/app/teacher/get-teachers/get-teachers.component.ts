@@ -15,12 +15,14 @@ import { Router } from '@angular/router';
 })
 export class GetTeachersComponent implements OnInit {
   teacherList : any;
+  filteredTeacherList : any;
   constructor (private teacherService : TeacherService,public dialog : MatDialog,
   private router:Router) {}
   ngOnInit(): void {
       this.teacherService.getAllTeachers().subscribe(
         response => {
           this.teacherList = response;
+          this.filteredTeacherList = [...this.teacherList];
         },
         error => {
           console.error('error fetching teachers',error);
@@ -73,5 +75,16 @@ export class GetTeachersComponent implements OnInit {
     //this.router.navigate(['teacher-details'],{state:{teacherId}});
     this.router.navigate(['/teachers', teacherId, 'classrooms']);
 
+  }
+  searchTeachers(event : Event): void{
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredTeacherList = this.teacherList.filter((teacher : any) => {
+      return (
+        teacher.firstName.toLowerCase().includes(searchTerm) ||
+        teacher.lastName.toLowerCase().includes(searchTerm) ||
+        teacher.code.toLowerCase().includes(searchTerm) ||
+        teacher.code.toLowerCase().includes(searchTerm) 
+      );
+    });
   }
 }

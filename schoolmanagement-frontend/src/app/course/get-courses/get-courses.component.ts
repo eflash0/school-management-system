@@ -16,12 +16,14 @@ import { CommonModule } from '@angular/common';
 })
 export class GetCoursesComponent implements OnInit {
   courseList : any;
+  filteredCourseList : any;
   constructor(private courseService : CourseService,public dialog : MatDialog) {}
 
   ngOnInit(): void {
       this.courseService.getCourses().subscribe(
         response => {
           this.courseList = response;
+          this.filteredCourseList = this.courseList;
         },
         error => {console.error('error fetching for courses',error);
         }
@@ -68,5 +70,11 @@ export class GetCoursesComponent implements OnInit {
         }
       }
     );
+  }
+  searchCourses(event : Event) : void{
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredCourseList = this.courseList.filter((course : any) => {
+      return (course.name.toLowerCase().includes(searchTerm));
+    });
   }
 }

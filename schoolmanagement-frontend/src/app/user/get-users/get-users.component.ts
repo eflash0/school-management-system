@@ -15,11 +15,13 @@ import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmat
 })
 export class GetUsersComponent implements OnInit{
   userList : any;
+  filteredUserList : any;
   constructor(private userService : UserService,public dialog : MatDialog){}
 
   ngOnInit(): void {
       this.userService.getALlUsers().subscribe(
         response => { this.userList = response;
+          this.filteredUserList = this.userList;
           // console.log(this.userList.length);
          } ,
         error => { console.log("error during the fetching of data"); }
@@ -65,6 +67,12 @@ export class GetUsersComponent implements OnInit{
           }
         }
     );
+  }
+  searchUsers(event : Event) : void{
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredUserList = this.userList.filter((user : any) =>{
+      return (user.username.toLowerCase().includes(searchTerm));
+    });
   }
   
 }
