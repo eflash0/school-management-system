@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GetUsersComponent } from './user/get-users/get-users.component';
-import { authGuard } from './auth.guard';
+import { authGuard } from './guards/auth.guard';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { AddStudentComponent } from './student/add-student/add-student.component';
 import { GetStudentsComponent } from './student/get-students/get-students.component';
@@ -12,12 +12,13 @@ import { GetTeachersComponent } from './teacher/get-teachers/get-teachers.compon
 import { TeacherDetailsComponent } from './teacher/teacher-details/teacher-details.component';
 import { GetClassroomsComponent } from './classroom/get-classrooms/get-classrooms.component';
 import { ClassroomDetailsComponent } from './classroom/classroom-details/classroom-details.component';
+import { userGuard } from './guards/user.guard';
 
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate:[authGuard] },
-  { path: 'get-users', component: GetUsersComponent,canActivate:[authGuard]},
+  { path: 'get-users', component: GetUsersComponent,canActivate:[authGuard,userGuard]},
   { path: 'navigation-bar', component: NavigationBarComponent},
   { path: 'add-student', component: AddStudentComponent},
   { path: 'get-students', component: GetStudentsComponent,canActivate:[authGuard]},

@@ -54,7 +54,7 @@ export class StudentService {
   registerStudentInCourse(studentId:number,courseId:number) : Observable<any>{
     const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     const regUrl = `${this.url}/${studentId}/courses/${courseId}`;
-    return this.http.post<any>(regUrl,{ headers });
+    return this.http.post<any>(regUrl,null,{ headers });
   }
 
   unregisterStudentFromCourse(studentId:number,courseId:number) : Observable<any>{
@@ -66,7 +66,7 @@ export class StudentService {
   registerStudentInClassroom(studentId:number,classroomId:number) : Observable<any>{
     const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     const regUrl = `${this.url}/${studentId}/classrooms/${classroomId}`;
-    return this.http.post<any>(regUrl,{ headers });
+    return this.http.post<any>(regUrl,null,{ headers });
   }
 
   unregisterStudentFromClassroom(studentId:number,classroomId:number) : Observable<any>{

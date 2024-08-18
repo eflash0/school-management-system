@@ -1,5 +1,7 @@
 package com.center.schoolmanagement.service;
 
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,7 +28,10 @@ public class LoginService {
                 new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
             // response.setSuccess(true);
             // response.setMessage("login successful");
-            return jwtTokenUtil.generateToken(authentication.getName());
+            String roles = authentication.getAuthorities().stream()
+                .map(authority -> authority.getAuthority())
+                .collect(Collectors.joining(","));
+            return jwtTokenUtil.generateToken(authentication.getName(),roles);
         } catch (AuthenticationException e) {
             // response.setSuccess(false);
             // response.setMessage("login failed");

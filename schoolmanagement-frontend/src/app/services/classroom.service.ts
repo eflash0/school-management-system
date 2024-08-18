@@ -52,7 +52,7 @@ export class ClassroomService {
   registerStudentInClassroom(classroomId : number,studentId : number) : Observable<any>{
     const headers = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     const regUrl = `${this.url}/${classroomId}/students/${studentId}`;
-    return this.http.post<any>(regUrl,{ headers });
+    return this.http.post<any>(regUrl,null,{ headers });
   }
 
   unregisterStudentFromClassroom(classroomId : number,studentId : number) : Observable<any>{

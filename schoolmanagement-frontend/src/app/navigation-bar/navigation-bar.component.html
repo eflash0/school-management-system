@@ -6,7 +6,7 @@
                 <a (click)="goDashboard()" class="text-2xl font-bold text-gray-800 no-underline cursor-pointer">School Dashboard</a>
                 <div class="ml-10 flex items-baseline space-x-4">
                     <a (click)="goDashboard()" class="text-gray-600 hover:text-gray-800 cursor-pointer">Dashboard</a>
-                    <a (click)="goUsers()" class="text-gray-600 hover:text-gray-800 cursor-pointer">Users</a>
+                    <a *ngIf="isAdmin" (click)="goUsers()" class="text-gray-600 hover:text-gray-800 cursor-pointer">Users</a>
                     <a (click)="goStudents()" class="text-gray-600 hover:text-gray-800 cursor-pointer">Students</a>
                     <a (click)="goCourses()" class="text-gray-600 hover:text-gray-800 cursor-pointer">Courses</a>
                     <a (click)="goTeachers()" class="text-gray-600 hover:text-gray-800 cursor-pointer">Teachers</a>

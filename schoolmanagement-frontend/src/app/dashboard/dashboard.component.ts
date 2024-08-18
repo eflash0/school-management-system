@@ -1,21 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from '../services/dashboard.service';
+import { LoginService } from '../services/login.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
+  isAdmin : boolean;
   usersCount : number = 0;
   studentsCount : number = 0;
   coursesCount : number = 0;
   teachersCount : number = 0;
   classroomsCount : number = 0;
-  constructor(private router : Router,private dashboardService : DashboardService) { }
+  constructor(private loginService : LoginService,private router : Router,private dashboardService : DashboardService) {
+    this.isAdmin = loginService.isAdmin();
+  }
 
   ngOnInit(): void {
     this.dashboardService.countClassrooms().subscribe(

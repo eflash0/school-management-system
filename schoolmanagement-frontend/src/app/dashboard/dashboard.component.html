@@ -11,7 +11,7 @@
     <div class="flex">
         <div class="bg-white w-64 min-h-screen shadow-md">
             <div class="p-4">
-                <a (click)="goUsers()" class="flex items-center text-gray-800 space-x-2 cursor-pointer">
+                <a *ngIf="isAdmin" (click)="goUsers()" class="flex items-center text-gray-800 space-x-2 cursor-pointer">
                     <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/person-fill.svg" class="h-6 w-6"/>
                     <span>Users</span>
                 </a>

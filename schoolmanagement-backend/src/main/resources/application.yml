@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: schoolmanagement
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: abdo
+    password: 123
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      dialect: org.hibernate.dialect.OracleDialect
+    properties:
+      hibernate:
+        format_sql: true
+ 
+server:
+  port: 8082
+  error:
+    include-message: always
+
+jwt:
+  secret: 2+LaR6mKTpaFTMK4NKlHUQ5JgMtQFK0zGGSE/OUgJR8oU7Vhihb0gA8RofYlZZ/30kN+My5iIvuvYPDDMld5hg==
+  expiration: 3600

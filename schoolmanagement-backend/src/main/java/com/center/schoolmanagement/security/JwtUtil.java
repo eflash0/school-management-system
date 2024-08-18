@@ -29,9 +29,10 @@ public class JwtUtil {
         secretKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(secret));
     }
 
-    public String generateToken(String username) {
+    public String generateToken(String username,String roles) {
         return Jwts.builder()
                 .setSubject(username)
+                .claim("roles", roles) 
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpiration*1000))
                 .signWith(secretKey, SignatureAlgorithm.HS512)

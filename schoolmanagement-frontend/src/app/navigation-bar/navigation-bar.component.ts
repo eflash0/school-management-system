@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navigation-bar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './navigation-bar.component.html',
   styleUrl: './navigation-bar.component.css'
 })
 export class NavigationBarComponent {
-  constructor(private loginService : LoginService,private router : Router){ }
-
+  isAdmin : boolean;
+  constructor(private loginService : LoginService,private router : Router){
+    this.isAdmin = loginService.isAdmin();
+  }
   logout() : void{
     this.loginService.logout();
     this.router.navigate(['/login']);

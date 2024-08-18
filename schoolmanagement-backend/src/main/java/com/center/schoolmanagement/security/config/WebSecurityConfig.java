@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.center.schoolmanagement.entity.Role;
 import com.center.schoolmanagement.security.JwtTokenFilter;
 import com.center.schoolmanagement.service.UserService;
 
@@ -30,10 +31,9 @@ public class WebSecurityConfig {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login").permitAll()
-                .requestMatchers("/validate-token").permitAll()
-                // .anyRequest().authenticated()
-                .anyRequest().permitAll()
+                .requestMatchers("/login","/validate-token").permitAll()
+                .requestMatchers("/users/**").hasAuthority(Role.ADMIN.name())
+                .anyRequest().authenticated()
             )
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
