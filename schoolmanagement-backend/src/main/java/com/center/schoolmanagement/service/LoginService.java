@@ -22,19 +22,14 @@ public class LoginService {
     private JwtUtil jwtTokenUtil;
 
     public String login(User user) {
-        // LoginResponse response = new LoginResponse();   
         try {
             Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-            // response.setSuccess(true);
-            // response.setMessage("login successful");
             String roles = authentication.getAuthorities().stream()
                 .map(authority -> authority.getAuthority())
                 .collect(Collectors.joining(","));
             return jwtTokenUtil.generateToken(authentication.getName(),roles);
         } catch (AuthenticationException e) {
-            // response.setSuccess(false);
-            // response.setMessage("login failed");
             throw new RuntimeException("Login failed: " + e.getMessage());
         }
     }

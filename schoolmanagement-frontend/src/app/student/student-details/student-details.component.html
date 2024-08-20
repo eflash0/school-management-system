@@ -142,57 +142,10 @@
             </form>
         </div>
     </div>
-
-    <!-- <script>
-        const studentCourses = [
-            { courseId: 'C001', courseName: 'Mathematics', instructor: 'Dr. Smith', credits: 4 }
-            // Add more courses dynamically as needed
-        ];
-
-        const availableCourses = [
-            { courseId: 'C002', courseName: 'Physics' },
-            { courseId: 'C003', courseName: 'Chemistry' },
-            { courseId: 'C004', courseName: 'Biology' }
-            // Add more available courses dynamically as needed
-        ];
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const courseTableContainer = document.getElementById('courseTableContainer');
-            const noCoursesMessage = document.getElementById('noCoursesMessage');
-            if (studentCourses.length === 0) {
-                courseTableContainer.classList.add('hidden');
-                noCoursesMessage.classList.remove('hidden');
-            } else {
-                courseTableContainer.classList.remove('hidden');
-                noCoursesMessage.classList.add('hidden');
-            }
-
-            const registerCourseForm = document.getElementById('registerCourseForm');
-            registerCourseForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const selectedCourseId = document.getElementById('course').value;
-                const selectedCourse = availableCourses.find(course => course.courseId === selectedCourseId);
-                if (selectedCourse) {
-                    studentCourses.push({
-                        courseId: selectedCourse.courseId,
-                        courseName: selectedCourse.courseName,
-                        instructor: 'TBD',
-                        credits: 3
-                    });
-                    alert('Course registered successfully!');
-                    location.reload();
-                }
-            });
-        });
-
-        function unregisterCourse(courseId) {
-            const courseIndex = studentCourses.findIndex(course => course.courseId === courseId);
-            if (courseIndex !== -1) {
-                studentCourses.splice(courseIndex, 1);
-                alert('Course unregistered successfully!');
-                location.reload();
-            }
-        }
-    </script> -->
+    <footer class="bg-white shadow-md mt-8">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-gray-500">&copy; 2024 School Management System. All rights reserved.</p>
+        </div>
+      </footer>
 </body>
 </html>

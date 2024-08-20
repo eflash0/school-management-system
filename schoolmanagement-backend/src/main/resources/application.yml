@@ -2,16 +2,16 @@ spring:
   application:
     name: schoolmanagement
   datasource:
-    driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@database:1521:xe
-    username: abdo
+    url: jdbc:postgresql://database:5432/schoolmanagement
+    username: postgres
     password: 123
+    driver-class-name: org.postgresql.Driver
 
   jpa:
-    show-sql: true
     hibernate:
-      ddl-auto: create-drop
-      dialect: org.hibernate.dialect.OracleDialect
+      ddl-auto: create-drop  # or create-drop depending on your needs
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
