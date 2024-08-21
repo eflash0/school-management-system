@@ -33,3 +33,10 @@ The **School Management System** is a comprehensive platform designed to facilit
    ```bash
    git clone https://github.com/yourusername/schoolmanagement.git
    cd schoolmanagement
+
+## Build and Run using Docker Compose
+
+To build and run the application using Docker Compose, follow these steps:
+
+```bash
+docker-compose up --build
