@@ -40,3 +40,5 @@ To build and run the application using Docker Compose, follow these steps:
 
 ```bash
 docker-compose up --build
+
+## Access the application
