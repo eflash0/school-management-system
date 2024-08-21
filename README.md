@@ -40,6 +40,8 @@ To build and run the application using Docker Compose, follow these steps:
    ```bash
    docker-compose up --build
 2. **Acssess the Apllication:**
+
    **Frontend:** http://localhost:4200
+   
    **Backend:**  http://localhost:8082
    
