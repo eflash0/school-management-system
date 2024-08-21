@@ -44,6 +44,5 @@ To build and run the application using Docker Compose, follow these steps:
 Once the containers are up and running, you can access the application through your browser:
    
    Frontend (Angular): http://localhost:4200
-   Backend (Spring Boot): http://localhost:8080
-
+   Backend (Spring Boot): http://localhost:8080g
    
