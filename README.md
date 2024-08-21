@@ -37,8 +37,7 @@ The **School Management System** is a comprehensive platform designed to facilit
 ## Build and Run using Docker Compose
 
 To build and run the application using Docker Compose, follow these steps:
+   ```bash
+   docker-compose up --build
 
-```bash
-docker-compose up --build
 
-## Access the application
