@@ -18,7 +18,6 @@ The **School Management System** is a comprehensive platform designed to facilit
 - **Authentication:** JWT (JSON Web Tokens)
 - **Containerization:** Docker, Docker Compose
 - **Database:** PostgreSQL
-- **Cloud Deployment:** AWS (Amazon Web Services)
 
 ## Project Structure
 - **Backend:** Handles all the business logic, RESTful APIs, and database interactions.
@@ -28,7 +27,6 @@ The **School Management System** is a comprehensive platform designed to facilit
 ## Getting Started
 ### Prerequisites
 - **Docker:** Ensure Docker is installed and running on your machine.
-- **AWS Account:** If you plan to deploy on AWS, set up an AWS account.
 
 ### Installation
 1. **Clone the repository:**
