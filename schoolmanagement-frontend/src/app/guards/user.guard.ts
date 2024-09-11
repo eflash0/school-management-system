@@ -9,7 +9,6 @@ export const userGuard: CanActivateFn = (route, state) => {
     return true;
   } 
   else {
-    router.navigate(['/dashboard']);
     return false;
   }
 };
